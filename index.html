@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOIN 嘉義網球</title>
+
+    <!-- CSS 樣式設定區 -->
+    <style>
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fdf8f4;
+        color: #3a2c1e;
+      }
+
+      header {
+        background-color: #fff;
+        text-align: center;
+        padding: 10px 20px 5px;
+      }
+      header img {
+        max-width: 180px;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      nav {
+        background-color: #bb8558;
+        text-align: center;
+        padding: 12px 0;
+      }
+      nav a {
+        color: #fffaf5;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+
+      section {
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+      }
+      h2 {
+        color: #b87333;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 10px;
+      }
+
+      .course-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .course-card h3 {
+        margin-top: 0;
+        color: #5a4031;
+      }
+
+      footer {
+        background-color: #eee4db;
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9em;
+        color: #5a4031;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .coach-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .coach-section ul {
+        flex: 1;
+        min-width: 250px;
+        margin: 0;
+      }
+
+      .coach-photo {
+        flex: 1;
+        width: 100%;
+        max-width: 400px; /* 電腦版更大 */
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1.2s ease-in-out;
+      }
+
+      @media (max-width: 600px) {
+        nav a {
+          display: block;
+          margin: 10px 0;
+        }
+        section {
+          padding: 30px 15px;
+        }
+        .coach-photo {
+          max-width: 100%;
+        }
+      }
+
+      .carousel {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        scroll-snap-type: x mandatory;
+      }
+      .carousel img {
+        width: 300px;
+        height: auto;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="images/LOGO.png" alt="JOIN Chiayi Tennis Logo" />
+      <h1>JOIN 嘉義網球</h1>
+      <p>大家一起join 網球 🎾</p>
+      <p>在嘉義等你來加一</p>
+    </header>
+
+    <nav>
+      <a href="#about">關於我們</a>
+      <a href="#courses">課程介紹</a>
+      <a href="#carousel">課程照片</a>
+      <a href="#location">上課地點</a>
+      <a href="#signup">報名方式</a>
+      <a href="#contact">聯絡我們</a>
+    </nav>
+
+    <section id="about">
+      <h2>關於我們</h2>
+      <h3>教學理念</h3>
+      <p>
+        網球很難！但打起來很帥！<br />
+        所以需要一位專業的教練<br />
+        重視紮實的基本功與細心的引導，相信每位學員無論年齡或程度，都能擊出漂亮的球。<br />
+        並致力於建立自信與成就感，讓網球不只是一項技術運動，而是融入生活、成為日常的喜好與習慣。<br />
+        無論你的目標是精進技巧、參與比賽，或只是希望藉由運動來釋放壓力，這裡都是最佳選擇。<br />
+      </p>
+
+      <h3>教練經歷</h3>
+      <!-- 加入動畫與圖片放大效果 -->
+
+      <div class="coach-section">
+        <ul>
+          <li>ITF國際網球錦標賽巴基斯坦站雙打季軍</li>
+          <li>全國青少年排名賽單雙打冠軍</li>
+          <li>全國中等學校運動會高中團體亞軍</li>
+          <li>Victo.ly公開認證組單打亞軍</li>
+          <li>誌鈞盃全國公開組冠軍</li>
+          <li>嘉義市市長盃冠軍</li>
+          <li>嘉義市委員盃冠軍</li>
+          <li>中華民國網球協會C級教練</li>
+          <li>中正大學公開組（甲組）校隊隊長</li>
+          <li>中正大學一般組（乙組）校隊助教</li>
+          <li>參與學校US PTR 網球計畫教練</li>
+        </ul>
+
+        <img src="images/自己打球照.jpg" alt="教練照片" class="coach-photo" />
+      </div>
+    </section>
+
+    <section id="courses">
+      <h2>課程介紹</h2>
+      <div class="course-card">
+        <h3>💪 一對一 / 一對二 專業課程</h3>
+        <p>量身打造個人化訓練內容，目標導向學習成效佳。</p>
+      </div>
+      <div class="course-card">
+        <h3>🎾 成人興趣班</h3>
+        <p>零基礎或有打球經驗者皆可，提升技巧、放鬆身心、建立社交圈。</p>
+      </div>
+      <div class="course-card">
+        <h3>🧒 兒童基礎班（6–12歲）</h3>
+        <p>從握拍、基本動作、遊戲入門，培養興趣與自信心。</p>
+      </div>
+      <div class="course-card">
+        <h3>🏃 進階訓練</h3>
+        <p>技術精進、比賽策略、體能訓練，適合已有基礎的學生。</p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>常見問題 Q&A</h2>
+      <div class="course-card">
+        <h3>Q：從來沒打過網球也可以參加嗎？</h3>
+        <p>
+          A：當然可以！我們設有初學者課程，從握拍、基本步伐一步步教起，不怕太晚來，只怕你不來！
+        </p>
+      </div>
+      <div class="course-card">
+        <h3>Q：需要自備球拍嗎？</h3>
+        <p>
+          A：初期可借用教練球拍，之後有近一步需求後會依照個人建議適合的裝備。
+        </p>
+      </div>
+      <div class="course-card">
+        <h3>Q：課程有哪些上課時間？</h3>
+        <p>A：時段彈性，平日晚間與假日皆有開課，歡迎私訊洽詢可預約時段。</p>
+      </div>
+      <div class="course-card">
+        <h3>Q：孩子年紀還小可以學嗎？</h3>
+        <p>A：歡迎6歲以上兒童參與，會使用兒童球與趣味教學方式循序漸進。</p>
+      </div>
+    </section>
+
+    <section id="carousel">
+      <h2>課程照片</h2>
+      <div class="carousel">
+        <img src="images/學生網球照_1.jpg" alt="課程照片1" />
+        <img src="images/學生網球照_2.jpg" alt="課程照片2" />
+        <img src="images/學生網球照_3.jpg" alt="課程照片3" />
+      </div>
+    </section>
+
+    <section id="location">
+      <h2>上課地點</h2>
+      <p>📍 民雄地區為主 中正大學附近;或是其他地點可詳談</p>
+    </section>
+
+    <section id="signup">
+      <h2>報名方式</h2>
+      <p>目前採取私訊ig或是臉書粉絲專頁方式報名（連結在下方）</p>
+      <p>可備註希望上課時段(平日/假日;早上/晚上)或是上課人數</p>
+      <p>期待與您在球場見面！</p>
+    </section>
+
+    <section id="contact">
+      <h2>聯絡我們</h2>
+      <p>📩 歡迎透過👇</p>
+      <!-- 引入 Font Awesome 圖示 -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+
+      <!-- IG 和 FB 社群圖示連結 -->
+      <div style="margin-top: 20px">
+        <p style="font-size: 16px; font-weight: bold"></p>
+        <a
+          href="https://www.instagram.com/join_tennis_/"
+          target="_blank"
+          style="margin-right: 10px"
+        >
+          <i class="fab fa-instagram fa-2x" style="color: #e4405f"></i>
+        </a>
+        <a
+          href="https://www.facebook.com/share/1BJ29SWx82/?mibextid=wwXIfr"
+          target="_blank"
+        >
+          <i class="fab fa-facebook fa-2x" style="color: #1877f2"></i>
+        </a>
+      </div>
+      <p>可使用上方圖示連結報名或觀看相關內容</p>
+      <p>歡迎追蹤分享並取得更多消息</p>
+    </section>
+
+    <footer>&copy; 2025 JOIN 嘉義網球｜網站設計：高旻紘</footer>
+  </body>
+</html>
