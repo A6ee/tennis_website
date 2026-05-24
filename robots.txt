@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://join-tennis.pages.dev/sitemap.xml
+Sitemap: http://join-tennis.pages.dev/sitemap.xml
