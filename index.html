@@ -11,7 +11,7 @@
     />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="JOIN 嘉義網球" />
-    <meta name="theme-color" content="#bb8558" />
+    <meta name="theme-color" content="#1e2f4f" />
     <link rel="canonical" href="https://join-tennis.pages.dev/" />
 
     <!-- Open Graph：影響 Facebook、LINE、社群分享預覽 -->
@@ -66,8 +66,6 @@
       sizes="180x180"
       href="/images/apple-touch-icon.png"
     />
-
-    <!-- 如果暫時還沒有另外製作 favicon，也可以先保留這行當備用 -->
     <link rel="shortcut icon" href="/images/join-chiayi-tennis-logo.png" />
 
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
@@ -76,7 +74,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!-- WebSite 結構化資料：協助 Google 判斷網站名稱，不要只顯示 Cloudflare -->
+    <!-- WebSite 結構化資料：協助 Google 判斷網站名稱 -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -206,7 +204,7 @@
             "name": "孩子年紀還小可以學網球嗎？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "歡迎 6 歲以上兒童參與，課程會搭配兒童球、趣味活動與循序漸進的教學方式。"
+              "text": "歡迎 5–12 歲兒童參與，課程會搭配兒童球、趣味活動與循序漸進的教學方式。"
             }
           },
           {
@@ -222,12 +220,41 @@
     </script>
 
     <style>
+      .site-nav,
+      .site-nav *,
+      .nav-links,
+      .nav-links * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      :root {
+        --color-primary: #1e2f4f;
+        --color-primary-light: #2f4f7f;
+        --color-primary-soft: #3f6fa8;
+        --color-accent: #c89b5a;
+        --color-bg: #f6f8fb;
+        --color-card: #ffffff;
+        --color-text: #1f2937;
+        --color-muted: #64748b;
+        --color-border: #d7dee8;
+        --color-white: #ffffff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #fdf8f4;
-        color: #3a2c1e;
+        background-color: var(--color-bg);
+        color: var(--color-text);
         line-height: 1.8;
       }
 
@@ -235,111 +262,382 @@
         color: inherit;
       }
 
-      header {
-        background-color: #fff;
-        text-align: center;
-        padding: 18px 20px 14px;
+      ::selection {
+        background-color: rgba(63, 111, 168, 0.22);
       }
 
-      header img {
-        max-width: 180px;
-        height: auto;
-        margin: 0 auto 10px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        display: block;
+      .hero {
+        position: relative;
+        width: 100%;
+        min-height: 92vh;
+        background-image: url("images/chiayi-tennis-banner.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        padding: 120px 20px 70px;
+        overflow: hidden;
       }
 
-      header h1 {
-        margin: 8px 0;
-        color: #5a4031;
-        font-size: 2rem;
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(15, 23, 42, 0.58) 0%,
+          rgba(30, 47, 79, 0.44) 42%,
+          rgba(30, 47, 79, 0.18) 100%
+        );
+        z-index: 1;
       }
 
-      .site-subtitle {
-        margin: 4px 0;
-        font-size: 1.05rem;
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 720px;
+        color: var(--color-white);
+        margin-left: 6%;
       }
 
-      nav {
-        background-color: #bb8558;
-        text-align: center;
-        padding: 12px 10px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
+      .hero-eyebrow {
+        margin: 0 0 12px;
+        color: #d8b26e;
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
       }
 
-      nav a {
-        color: #fffaf5;
-        text-decoration: none;
-        margin: 0 10px;
-        font-weight: bold;
+      .hero h1 {
+        margin: 0;
+        color: var(--color-white);
+        font-size: clamp(2.6rem, 5.2vw, 4.5rem);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.32);
+      }
+
+      .hero-title-sub {
+        margin: 14px 0 0;
+        color: #f8fafc;
+        font-size: clamp(1.15rem, 2.2vw, 1.75rem);
+        line-height: 1.45;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-shadow: 0 3px 14px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        margin: 18px 0 0;
+        color: #f8fafc;
+        font-size: 1.12rem;
+        line-height: 1.8;
+        max-width: 620px;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero-location {
+        margin: 10px 0 0;
+        color: #dbeafe;
         font-size: 1rem;
-        white-space: nowrap;
+        font-weight: 600;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
       }
 
-      nav a:hover,
-      nav a:focus {
-        text-decoration: underline;
+      .hero-buttons {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: 900;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease,
+          color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .hero-btn:hover,
+      .hero-btn:focus {
+        transform: translateY(-2px);
+        text-decoration: none;
+      }
+
+      .hero-btn-primary {
+        background-color: var(--color-primary-light);
+        color: var(--color-white);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.32);
+      }
+
+      .hero-btn-primary:hover,
+      .hero-btn-primary:focus {
+        background-color: var(--color-primary);
+      }
+
+      .hero-btn-secondary {
+        background-color: rgba(255, 255, 255, 0.14);
+        color: var(--color-white);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(4px);
+      }
+
+      .hero-btn-secondary:hover,
+      .hero-btn-secondary:focus {
+        background-color: rgba(255, 255, 255, 0.24);
+      }
+
+      .site-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 16px 0;
+        transition:
+          background-color 0.35s ease,
+          box-shadow 0.35s ease,
+          backdrop-filter 0.35s ease;
+      }
+
+      .nav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+      }
+
+      .nav-brand {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 190px;
+        height: 46px;
+        text-decoration: none;
+        padding: 0;
+        background: transparent;
+        flex-shrink: 0;
+      }
+
+      .nav-logo {
+        position: absolute;
+        left: 0;
+        display: block;
+        width: 190px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 0;
+        box-shadow: none;
+        transition:
+          opacity 0.25s ease,
+          width 0.28s ease;
+      }
+
+      .nav-logo-light {
+        opacity: 1;
+      }
+
+      .nav-logo-dark {
+        opacity: 0;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: var(--color-white);
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.38);
+        transition:
+          color 0.2s ease,
+          opacity 0.2s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus {
+        color: #d8b26e;
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.12);
+        cursor: pointer;
+        padding: 10px;
+      }
+
+      .nav-toggle span {
+        display: block;
+        height: 2px;
+        background-color: #ffffff;
+        border-radius: 999px;
+        margin: 5px 0;
+        transition:
+          transform 0.25s ease,
+          opacity 0.25s ease,
+          background-color 0.25s ease;
+      }
+
+      .site-nav.scrolled {
+        background-color: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.1);
+        padding: 16px 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .site-nav.scrolled .nav-logo-light {
+        opacity: 0;
+      }
+
+      .site-nav.scrolled .nav-logo-dark {
+        opacity: 1;
+      }
+
+      .site-nav.scrolled .nav-links a {
+        color: var(--color-primary);
+        text-shadow: none;
+      }
+
+      .site-nav.scrolled .nav-links a:hover,
+      .site-nav.scrolled .nav-links a:focus {
+        color: var(--color-primary-soft);
+      }
+
+      .site-nav.scrolled .nav-toggle {
+        border-color: rgba(30, 47, 79, 0.18);
+        background: rgba(30, 47, 79, 0.06);
+      }
+
+      .site-nav.scrolled .nav-toggle span {
+        background-color: var(--color-primary);
+      }
+
+      main {
+        background-color: var(--color-bg);
       }
 
       section {
-        padding: 42px 20px;
-        max-width: 900px;
+        padding: 48px 20px;
+        max-width: 960px;
         margin: auto;
+        scroll-margin-top: 86px;
       }
 
       h2 {
-        color: #b87333;
-        border-bottom: 2px solid #ccc;
+        color: var(--color-primary);
+        border-bottom: 2px solid var(--color-border);
         padding-bottom: 10px;
+        margin-top: 0;
+        font-size: 1.8rem;
       }
 
       h3 {
-        color: #5a4031;
+        color: #243b63;
+      }
+
+      p {
+        font-size: 1rem;
       }
 
       .course-card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        padding: 20px;
+        background-color: var(--color-card);
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+        padding: 22px;
         margin-bottom: 20px;
+      }
+
+      .course-card-large {
+        margin-bottom: 36px;
+        padding: 26px;
       }
 
       .course-card h3 {
         margin-top: 0;
       }
 
-      .highlight-list {
-        background: #fffaf5;
-        border-left: 4px solid #bb8558;
-        padding: 15px 20px;
-        border-radius: 8px;
+      .course-title {
+        color: var(--color-primary);
+        font-size: 1.55rem;
+        font-weight: 900;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      .course-text {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .course-text p {
+        margin: 0;
       }
 
       .coach-section {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
-        gap: 24px;
-        animation: fadeIn 1s ease-in-out;
+        gap: 28px;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      .coach-section-spaced {
+        margin-bottom: 42px;
       }
 
       .coach-section ul {
         flex: 1;
-        min-width: 250px;
+        min-width: 260px;
         margin: 0;
+        padding-left: 22px;
+      }
+
+      .coach-section li {
+        margin-bottom: 4px;
+      }
+
+      .coach-name {
+        font-size: 1.3rem;
+        font-weight: 900;
+        color: var(--color-primary);
+        list-style: none;
+        margin-left: -22px;
+        margin-bottom: 10px;
       }
 
       .coach-photo {
-        flex: 1;
+        flex: 0 1 260px;
         width: 100%;
-        max-width: 400px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        animation: fadeIn 1.2s ease-in-out;
+        max-width: 260px;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 3 / 4;
+        border-radius: 14px;
+        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+        animation: fadeIn 1s ease-in-out;
       }
 
       .carousel {
@@ -351,11 +649,51 @@
       }
 
       .carousel img {
-        width: 300px;
         height: auto;
-        flex-shrink: 0;
         scroll-snap-align: center;
-        border-radius: 12px;
+        border-radius: 14px;
+      }
+
+      .carousel-photo {
+        width: 280px;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        flex-shrink: 0;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+      }
+
+      .info-section {
+        max-width: 1080px;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .info-card {
+        background-color: var(--color-card);
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+      }
+
+      .info-card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: var(--color-primary);
+        font-size: 1.25rem;
+      }
+
+      .info-card p {
+        margin-bottom: 0;
+      }
+
+      .info-card .social-links {
+        margin-top: 16px;
       }
 
       .social-links {
@@ -370,20 +708,187 @@
 
       .social-links i {
         vertical-align: middle;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
       }
 
+      .social-links a:hover i,
+      .social-links a:focus i {
+        transform: translateY(-2px);
+        opacity: 0.85;
+      }
+
+      .instagram-icon {
+        color: #e4405f;
+      }
+
+      .facebook-icon {
+        color: #1877f2;
+      }
+      .summer-camp-section {
+        max-width: 1080px;
+      }
+
+      .summer-camp-section,
+      .summer-camp-section * {
+        box-sizing: border-box;
+      }
+
+      .summer-camp-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 30px;
+        align-items: center;
+        background-color: var(--color-card);
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+      }
+
+      .section-eyebrow {
+        margin: 0 0 8px;
+        color: var(--color-accent);
+        font-size: 0.85rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+      }
+
+      .summer-camp-content h2 {
+        color: var(--color-primary);
+        border-bottom: 2px solid var(--color-border);
+        padding-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 18px;
+        font-size: 1.8rem;
+      }
+
+      .summer-camp-lead {
+        margin-top: 0;
+        color: var(--color-text);
+        font-size: 1.02rem;
+        font-weight: 700;
+        line-height: 1.8;
+      }
+
+      .summer-camp-info {
+        margin-top: 18px;
+        padding: 16px 18px;
+        background-color: #f6f8fb;
+        border-left: 4px solid var(--color-accent);
+        border-radius: 12px;
+      }
+
+      .summer-camp-info p {
+        margin: 6px 0;
+        font-size: 0.98rem;
+      }
+
+      .summer-camp-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .summer-camp-btn {
+        display: inline-block;
+        padding: 11px 22px;
+        border-radius: 999px;
+        background-color: var(--color-primary);
+        color: #ffffff;
+        font-weight: 900;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .summer-camp-btn:hover,
+      .summer-camp-btn:focus {
+        background-color: var(--color-primary-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+      }
+
+      .summer-camp-btn.secondary {
+        background-color: #ffffff;
+        color: var(--color-primary);
+        border: 1px solid var(--color-border);
+      }
+
+      .summer-camp-btn.secondary:hover,
+      .summer-camp-btn.secondary:focus {
+        background-color: #f8fafc;
+      }
+
+      .summer-camp-poster-link {
+        display: block;
+        text-decoration: none;
+      }
+
+      .summer-camp-poster {
+        display: block;
+        width: 100%;
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      }
       footer {
-        background-color: #eee4db;
-        padding: 20px;
+        background-color: var(--color-primary);
+        padding: 22px 20px;
         text-align: center;
         font-size: 0.9em;
-        color: #5a4031;
+        color: var(--color-white);
+      }
+
+      .back-to-top {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 120;
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 999px;
+        background-color: rgba(30, 47, 79, 0.92);
+        color: #ffffff;
+        font-size: 1.05rem;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.24);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          visibility 0.25s ease,
+          transform 0.25s ease,
+          background-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .back-to-top i {
+        line-height: 1;
+      }
+
+      .back-to-top.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover,
+      .back-to-top:focus {
+        background-color: var(--color-primary-light);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.3);
+        transform: translateY(-2px);
       }
 
       @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(18px);
         }
 
         to {
@@ -392,30 +897,270 @@
         }
       }
 
+      @media (max-width: 900px) {
+        .nav-inner {
+          align-items: flex-start;
+        }
+
+        .nav-links {
+          gap: 16px;
+        }
+
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 700px) {
-        header h1 {
-          font-size: 1.55rem;
+        .hero {
+          width: 100%;
+          min-height: 100svh;
+          padding: 104px 16px 46px;
+          background-position: center;
         }
 
-        nav {
-          position: static;
+        .hero-overlay {
+          background: linear-gradient(
+            to bottom,
+            rgba(15, 23, 42, 0.58) 0%,
+            rgba(30, 47, 79, 0.46) 48%,
+            rgba(30, 47, 79, 0.34) 100%
+          );
         }
 
-        nav a {
+        .hero-content {
+          margin-left: 0;
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .hero-eyebrow {
+          font-size: 0.82rem;
+        }
+
+        .hero h1 {
+          font-size: 2.25rem;
+        }
+
+        .hero-title-sub {
+          font-size: 1.15rem;
+        }
+
+        .hero-subtitle,
+        .hero-location {
+          font-size: 0.98rem;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .hero-btn {
+          width: 100%;
+          max-width: 280px;
+          text-align: center;
+          padding: 11px 18px;
+        }
+
+        .site-nav {
+          padding: 12px 0;
+        }
+
+        .site-nav.scrolled {
+          padding: 12px 0;
+        }
+
+        .nav-inner {
+          position: relative;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 0 16px;
+        }
+
+        .nav-brand {
+          width: 145px;
+          height: 40px;
+          min-width: 0;
+        }
+
+        .nav-logo {
+          width: 145px;
+          height: auto;
+          flex-shrink: 0;
+        }
+
+        .site-nav.scrolled .nav-brand {
+          width: 140px;
+        }
+
+        .site-nav.scrolled .nav-logo {
+          width: 140px;
+        }
+
+        .nav-toggle {
           display: block;
-          margin: 10px 0;
+          flex-shrink: 0;
+          width: 44px;
+          height: 44px;
+          border: 1px solid rgba(255, 255, 255, 0.42);
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.12);
+          cursor: pointer;
+          padding: 10px;
+        }
+
+        .nav-toggle span {
+          display: block;
+          height: 2px;
+          background-color: #ffffff;
+          border-radius: 999px;
+          margin: 5px 0;
+          transition:
+            transform 0.25s ease,
+            opacity 0.25s ease,
+            background-color 0.25s ease;
+        }
+
+        .site-nav.scrolled .nav-toggle {
+          border-color: rgba(30, 47, 79, 0.18);
+          background: rgba(30, 47, 79, 0.06);
+        }
+
+        .site-nav.scrolled .nav-toggle span {
+          background-color: var(--color-primary);
+        }
+
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 12px);
+          left: 16px;
+          right: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          pointer-events: none;
+          white-space: normal;
+          background-color: rgba(255, 255, 255, 0.96);
+          border: 1px solid rgba(30, 47, 79, 0.12);
+          border-radius: 18px;
+          box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+          backdrop-filter: blur(12px);
+          transition:
+            max-height 0.3s ease,
+            opacity 0.25s ease;
+        }
+
+        .nav-links a {
+          display: block;
+          color: var(--color-primary);
+          text-shadow: none;
+          font-size: 1rem;
+          font-weight: 900;
+          padding: 13px 16px;
+          border-bottom: 1px solid rgba(30, 47, 79, 0.08);
+        }
+
+        .nav-links a:last-child {
+          border-bottom: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+          color: var(--color-primary-soft);
+        }
+
+        .site-nav.is-open .nav-links {
+          max-height: 420px;
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .site-nav.is-open .nav-toggle span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        .site-nav.is-open .nav-toggle span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .site-nav.is-open .nav-toggle span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
         }
 
         section {
-          padding: 32px 15px;
+          padding: 36px 15px;
+          scroll-margin-top: 104px;
+        }
+
+        h2 {
+          font-size: 1.55rem;
+        }
+
+        .course-card,
+        .course-card-large {
+          padding: 20px;
+          margin-bottom: 24px;
+        }
+
+        .course-title {
+          font-size: 1.35rem;
+        }
+
+        .coach-section {
+          gap: 18px;
         }
 
         .coach-photo {
           max-width: 100%;
         }
 
-        .carousel img {
+        .carousel-photo {
           width: 260px;
+        }
+
+        .back-to-top {
+          right: 16px;
+          bottom: 16px;
+          width: 44px;
+          height: 44px;
+          font-size: 1rem;
+        }
+        .summer-camp-card {
+          grid-template-columns: 1fr;
+          gap: 22px;
+          padding: 20px;
+          border-radius: 16px;
+        }
+
+        .summer-camp-content h2 {
+          font-size: 1.55rem;
+        }
+
+        .summer-camp-actions {
+          flex-direction: column;
+          width: 100%;
+          gap: 12px;
+        }
+
+        .summer-camp-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          max-width: 100%;
+          min-height: 54px;
+          text-align: center;
+          padding: 12px 18px;
+        }
+
+        .summer-camp-poster {
+          border-radius: 12px;
         }
       }
     </style>
@@ -427,61 +1172,175 @@
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
+
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
 
+      gtag("js", new Date());
       gtag("config", "G-FPB3HJ9X5D");
     </script>
   </head>
-  <body>
-    <header>
-      <img
-        src="images/join-chiayi-tennis-logo.png"
-        alt="JOIN 嘉義網球品牌標誌"
-        width="180"
-        height="180"
-      />
-      <h1>嘉義網球課程｜JOIN 嘉義網球教練</h1>
-      <p class="site-subtitle">
-        嘉義民雄、中正大學附近的一對一網球教學、成人興趣班與兒童基礎課程
-      </p>
-      <p class="site-subtitle">大家一起 JOIN 網球，在嘉義等你來加一 🎾</p>
-    </header>
 
-    <nav aria-label="主要導覽">
-      <a href="#about">關於我們</a>
-      <a href="#courses">課程介紹</a>
-      <a href="#faq">常見問題</a>
-      <a href="#carousel">課程照片</a>
-      <a href="#location">上課地點</a>
-      <a href="#signup">報名方式</a>
-      <a href="#contact">聯絡我們</a>
-    </nav>
+  <body>
+    <header class="hero">
+      <nav class="site-nav" id="siteNav" aria-label="主要導覽">
+        <div class="nav-inner">
+          <a href="#" class="nav-brand">
+            <img
+              src="images/join-tennis-nav-logo-white.png"
+              alt="JOIN 嘉義網球品牌標誌"
+              class="nav-logo nav-logo-light"
+            />
+            <img
+              src="images/join-tennis-nav-logo-dark.png"
+              alt="JOIN 嘉義網球品牌標誌"
+              class="nav-logo nav-logo-dark"
+            />
+          </a>
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="開啟選單"
+            aria-expanded="false"
+            aria-controls="primaryNav"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="nav-links" id="primaryNav">
+            <a href="#about">關於 JOIN</a>
+            <a href="#coaches">教練團隊</a>
+            <a href="#summer-camp">夏令營</a>
+            <a href="#courses">課程介紹</a>
+            <a href="#faq">常見問題</a>
+            <a href="#carousel">課程照片</a>
+            <a href="#signup">預約資訊</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">JOIN CHIAYI TENNIS</p>
+
+        <h1>JOIN 嘉義網球</h1>
+
+        <p class="hero-subtitle">
+          適合初學者、成人、兒童，提供從零開始的基礎訓練與進階課程。
+        </p>
+        <p class="hero-location">民雄・中正大學附近・嘉義市・嘉義縣</p>
+
+        <div class="hero-buttons">
+          <a
+            class="hero-btn hero-btn-secondary"
+            href="https://www.instagram.com/join_tennis_/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            預約課程
+          </a>
+
+          <a class="hero-btn hero-btn-secondary" href="#courses"> 課程介紹 </a>
+        </div>
+      </div>
+    </header>
 
     <main>
       <section id="about">
         <h2>關於 JOIN 嘉義網球</h2>
-        <h3>嘉義、民雄與中正大學附近的網球教學</h3>
+        <h3>不是天生會打球，是從 JOIN 開始會打球</h3>
+
         <p>
           JOIN
-          嘉義網球由高旻紘教練提供嘉義地區網球課程，主要服務範圍包含中正大學附近、民雄、嘉義市與嘉義縣。課程適合第一次接觸網球的初學者，也適合想改善正手、反手、發球、步伐與比賽觀念的學員。
+          嘉義網球由高教練提供嘉義地區網球課程，服務範圍包含民雄、嘉義市與嘉義縣。課程適合第一次接觸網球的初學者，也適合想改善正手、反手、發球、步伐與比賽觀念的學員。
         </p>
+
         <p>
-          教學重視紮實基本功與細心引導，會依照學員年齡、程度與學習目標調整內容。無論你的目標是培養運動習慣、釋放壓力、提升技巧，或未來想參與比賽，都可以透過循序漸進的訓練建立信心與成就感。
+          在
+          JOIN，我們不要求你一開始就像職業選手，只希望你每一次上場，都能比上一次更敢打、更會打，也更享受打球的快樂。教學會依照學員年齡、程度與學習目標調整內容，從基本動作、擊球節奏到場上觀念，一步一步建立穩定的網球能力。
         </p>
 
-        <div class="highlight-list">
-          <strong>適合對象：</strong>
-          網球初學者、成人興趣學員、6–12
-          歲兒童、想精進技巧的進階學員，以及希望在嘉義民雄或中正大學附近尋找網球教練的人。
-        </div>
+        <p>
+          不管你是想流汗紓壓、培養運動習慣、提升技巧，還是未來想挑戰比賽，都可以在這裡找到適合自己的訓練節奏。打球不怕從零開始，只怕你還沒開始
+          JOIN。
+        </p>
+      </section>
+      <section id="summer-camp" class="summer-camp-section">
+        <div class="summer-camp-card">
+          <div class="summer-camp-content">
+            <p class="section-eyebrow">SUMMER CAMP</p>
+            <h2>七月小朋友網球夏令營</h2>
 
-        <h3>教練經歷</h3>
-        <div class="coach-section">
+            <p class="summer-camp-lead">
+              適合國小生參加，透過網球課程培養運動習慣、提升協調性，
+              也讓孩子在暑假期間快樂揮拍、健康成長。
+            </p>
+
+            <div class="summer-camp-info">
+              <p><strong>招生對象：</strong>國小生</p>
+              <p><strong>上課地點：</strong>民雄地區</p>
+              <p>
+                <strong>課程時間：</strong>上午場 9:00–11:00、下午場 2:00–4:00
+              </p>
+              <p>
+                <strong>課程梯次：</strong
+                >7/6–7/10、7/13–7/17、7/20–7/24、7/27–7/31
+              </p>
+              <p>
+                <strong>費用：</strong>每梯次 $3,500，單日報名
+                $800，多梯次報名優惠折 $1,000
+              </p>
+            </div>
+
+            <div class="summer-camp-actions">
+              <a
+                class="summer-camp-btn"
+                href="https://forms.gle/ko3N7rgyGVE7q9ru5"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                填寫報名表單
+              </a>
+
+              <a
+                class="summer-camp-btn secondary"
+                href="https://www.instagram.com/join_tennis_/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                私訊詢問課程
+              </a>
+            </div>
+          </div>
+
+          <a
+            class="summer-camp-poster-link"
+            href="https://forms.gle/ko3N7rgyGVE7q9ru5"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="前往七月小朋友網球夏令營報名表單"
+          >
+            <img
+              src="images/join-tennis-summer-camp-poster.jpg"
+              alt="JOIN TENNIS 七月小朋友網球夏令營海報，招生對象為國小生，上課地點為民雄地區"
+              class="summer-camp-poster"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </section>
+
+      <section id="coaches">
+        <h2>教練團隊介紹</h2>
+
+        <div class="coach-section coach-section-spaced">
           <ul>
-            <li>高旻紘教練</li>
+            <li class="coach-name">總教練：高旻紘（老高）</li>
             <li>ITF 國際網球錦標賽巴基斯坦站雙打季軍</li>
             <li>全國青少年排名賽單雙打冠軍</li>
             <li>全國中等學校運動會高中團體亞軍</li>
@@ -496,8 +1355,27 @@
           </ul>
 
           <img
-            src="images/chiayi-tennis-coach-kao-min-hung.jpg"
+            src="images/chiayi-tennis-coach-kao-min-hung_2.jpg"
             alt="高旻紘教練示範網球擊球動作"
+            class="coach-photo"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="coach-section">
+          <ul>
+            <li class="coach-name">助理教練：張育鵬（小鵬）</li>
+            <li>112年大衛凱靖盃U18全國青少年網球錦標賽單打 - 季軍</li>
+            <li>113年YONEX盃U18全國青少年網球錦標賽單打 - 亞軍</li>
+            <li>113年華國三太子盃全國青少年網球錦標賽B級18歲單打 - 冠軍</li>
+            <li>113年華國三太子盃全國青少年網球錦標賽B級18歲雙打 - 冠軍</li>
+            <li>113年YONEX盃全國青少年網球錦標賽B級18歲單打 - 冠軍</li>
+            <li>113年凱靖大衛盃U18全國青少年網球錦標賽單打 - 亞軍</li>
+          </ul>
+
+          <img
+            src="images/chiayi-tennis-coach-zhang-yu-peng.jpg"
+            alt="張育鵬教練示範網球擊球動作"
             class="coach-photo"
             loading="lazy"
           />
@@ -507,33 +1385,87 @@
       <section id="courses">
         <h2>嘉義網球課程介紹</h2>
 
-        <div class="course-card">
-          <h3>💪 一對一 / 一對二網球課程</h3>
-          <p>
-            適合希望快速建立基礎、修正動作或準備比賽的學員。課程會依照個人程度安排正手、反手、截擊、發球、腳步與比賽觀念訓練，讓學員能在嘉義民雄與中正大學附近接受更個人化的網球教學。
-          </p>
+        <div class="course-card course-card-large">
+          <h3 class="course-title">👤 一對一課程</h3>
+
+          <div class="course-text">
+            <p>
+              一對一課程適合希望快速建立網球基礎、修正動作細節，或正在準備比賽的學員。課程將依照學員目前程度、學習目標與訓練需求，安排最適合的進度與練習內容，讓每一次上課都更有方向、更有效率。
+            </p>
+
+            <p>
+              課程內容可依照個人需求調整，包含正手、反手、發球、截擊、腳步移動、擊球穩定度、場上判斷與比賽觀念訓練。教練會針對學員的動作習慣與技術問題，提供即時回饋與修正方向，幫助學員建立更穩定、更扎實的網球能力。
+            </p>
+
+            <p>
+              上課時間安排彈性，可與教練討論適合的時段，確認後即可預約上課。讓學員能依照自己的時間與學習節奏，接受最扎實、最個人化的網球教學。
+            </p>
+          </div>
         </div>
 
-        <div class="course-card">
-          <h3>🎾 成人網球興趣班</h3>
-          <p>
-            適合零基礎成人、上班族與想培養運動習慣的學員。課程重視基礎動作、安全擊球與實際對打樂趣，讓學員能在輕鬆的節奏中學會網球，並逐步建立穩定的運動習慣。
-          </p>
+        <div class="course-card course-card-large">
+          <h3 class="course-title">👥 一對二／一對三</h3>
+
+          <div class="course-text">
+            <p>
+              此課程適合想與朋友、家人、情侶或固定球友一起學習的學員。課程以 2
+              至 3
+              人小班制進行，在保有教練個別指導品質的同時，也能透過彼此互動、觀摩與對打練習，讓學習過程更有趣、更有效率。
+            </p>
+
+            <p>
+              課程內容會依照學員整體程度與學習目標安排，包含正手、反手、發球、截擊、腳步移動、控球能力、擊球穩定度與比賽觀念訓練。教練會針對每位學員的動作問題給予修正建議，並搭配雙人或多人練習，幫助學員將技術更自然地運用到實際擊球與對打情境中。
+            </p>
+
+            <p>
+              課程兼顧教學品質、練習樂趣與實戰互動，非常適合希望和夥伴一起進步、一起培養運動習慣的學員。上課時間可與教練彈性安排，確認時段後即可預約上課。
+            </p>
+          </div>
         </div>
 
-        <div class="course-card">
-          <h3>🧒 兒童網球基礎班（6–12 歲）</h3>
-          <p>
-            針對 6 至 12
-            歲兒童設計，透過兒童球、趣味遊戲與循序漸進的教學方式，培養孩子的手眼協調、移動能力、專注力與運動自信。課程會依照孩子狀況調整難度，不急著追求比賽，而是先建立興趣與正確動作。
-          </p>
+        <div class="course-card course-card-large">
+          <h3 class="course-title">🎾 成人網球興趣班</h3>
+
+          <div class="course-text">
+            <p>
+              成人網球興趣班適合想開始接觸網球、培養運動習慣，或希望在下班後放鬆身心的學員。無論是完全沒有基礎，或是曾經打過但想重新建立動作，都可以從輕鬆、循序漸進的課程中開始學習。
+            </p>
+
+            <p>
+              課程會從基本握拍、正手、反手、腳步移動與擊球節奏開始，幫助學員慢慢熟悉網球的動作與場上節奏。教練會依照學員程度調整練習內容，避免一開始就給予過多壓力，讓學員能在安全、有趣的氛圍中建立信心。
+            </p>
+
+            <p>
+              除了技術學習，課程也會安排簡單對打、控球練習與互動遊戲，讓學員在實際擊球中感受網球的樂趣。透過固定練習，不只可以提升協調性、體能與專注力，也能在運動中舒壓，認識一起打球的夥伴。
+            </p>
+
+            <p>
+              成人網球興趣班適合想要培養新興趣、建立規律運動習慣，或單純想體驗網球樂趣的學員。歡迎零基礎加入，從第一堂課開始，一起享受揮拍的成就感。
+            </p>
+          </div>
         </div>
 
-        <div class="course-card">
-          <h3>🏃 網球進階訓練</h3>
-          <p>
-            適合已有基礎、希望提升穩定度與比賽能力的學員。課程內容包含擊球品質、移位、發球策略、接發球、比賽節奏與實戰觀念訓練，協助學員將單項技術整合到實際對打與比賽情境中。
-          </p>
+        <div class="course-card course-card-large">
+          <h3 class="course-title">🧒 兒童網球基礎班｜5–12 歲</h3>
+
+          <div class="course-text">
+            <p>
+              兒童網球基礎班適合 5–12
+              歲、想開始接觸網球或培養運動習慣的孩子。課程會以孩子的年齡、體能與學習狀況安排內容，透過有趣、循序漸進的方式，幫助孩子在安全的環境中認識網球、喜歡運動，並慢慢建立基本能力。
+            </p>
+
+            <p>
+              課程內容包含基本球感練習、正手、反手、腳步移動、手眼協調與簡單擊球練習。教練會依照孩子的程度調整難度，讓孩子不會因為一開始太困難而失去信心，也能在每一次成功擊球中獲得成就感。
+            </p>
+
+            <p>
+              除了網球技術，課程也會透過遊戲化訓練培養孩子的反應能力、協調性、專注力與身體控制能力。對於年紀較小或初次接觸運動的孩子，會先從球感、移動與簡單任務開始；對於已有基礎的孩子，則可以逐步加入對打、控球與比賽觀念。
+            </p>
+
+            <p>
+              兒童網球基礎班不只是學習一項運動，更是讓孩子在運動中建立自信、規律、專注與團隊互動能力。歡迎零基礎孩子加入，從輕鬆有趣的課程開始，慢慢培養對網球的興趣與運動習慣。
+            </p>
+          </div>
         </div>
       </section>
 
@@ -544,110 +1476,205 @@
           <h3>Q：從來沒打過網球也可以參加嗎？</h3>
           <p>
             A：可以。JOIN
-            嘉義網球設有初學者課程，會從握拍、基本步伐與基礎擊球開始教學，適合第一次接觸網球的學員。
+            嘉義網球設有初學者專屬課程，會從最基礎的握拍、基本步伐與基礎擊球開始引導，打球不怕從零開始，非常適合第一次接觸網球的學員。
           </p>
         </div>
 
         <div class="course-card">
           <h3>Q：需要自備球拍嗎？</h3>
           <p>
-            A：初期可借用教練球拍，之後可依照個人程度、身高、力量與學習需求，建議適合的球拍與相關裝備。
+            A：初期上課皆可免費借用教練提供的球拍，學員只需穿著運動服飾與運動鞋即可。後續若想購買裝備，教練也會依照學員的個人程度、身高、力量與學習需求，給予最適合的網球球拍選購建議。
           </p>
         </div>
 
         <div class="course-card">
           <h3>Q：課程有哪些上課時間？</h3>
           <p>
-            A：課程時段以預約為主，平日晚間與假日皆可洽詢。實際時間會依教練與學員可安排時段確認。
+            A：課程時段安排非常彈性，主要以預約制為主。平日白天、下班晚間時段以及假日皆可洽詢。你可以私訊與教練討論適合的時間，確認時段後即可成功預約上課。
           </p>
         </div>
 
         <div class="course-card">
           <h3>Q：孩子年紀還小可以學網球嗎？</h3>
           <p>
-            A：歡迎 6
-            歲以上兒童參與，課程會搭配兒童球、趣味活動與循序漸進的教學方式，讓孩子先建立興趣與基礎動作。
+            A：歡迎 5–12
+            歲的兒童參與！我們會搭配專門的兒童減壓球、趣味球感遊戲與循序漸進的關卡任務，讓年紀較小或初次接觸運動的孩子不會產生挫折感，而是在安全的環境下慢慢培養對網球的興趣。
           </p>
         </div>
 
         <div class="course-card">
           <h3>Q：主要在哪裡上課？</h3>
           <p>
-            A：目前以上課預約地點為主，主要服務嘉義民雄與中正大學周邊，也可依需求討論嘉義市與嘉義縣其他合適地點。
+            A：目前以上課預約的地點為主，主要服務嘉義民雄與中正大學周邊。如果學員位在嘉義市、嘉義縣的其他合適場地，也歡迎隨時私訊討論開課的可能性。
           </p>
         </div>
       </section>
 
       <section id="carousel">
         <h2>嘉義網球課程照片</h2>
-        <p>
-          以下為 JOIN
-          嘉義網球課程與練習照片，可作為了解課程氛圍與教學情境的參考。
-        </p>
+
         <div class="carousel" aria-label="課程照片輪播">
           <img
             src="images/chiayi-tennis-lesson-1.jpg"
-            alt="嘉義網球課程學員練習照片"
+            alt="網球教學練習情況"
             loading="lazy"
+            class="carousel-photo"
           />
+
           <img
             src="images/chiayi-tennis-lesson-2.jpg"
-            alt="民雄中正大學附近網球教學練習情況"
+            alt="學員課後合照"
             loading="lazy"
+            class="carousel-photo"
           />
+
           <img
             src="images/chiayi-tennis-lesson-3.jpg"
-            alt="JOIN 嘉義網球成人與兒童課程照片"
+            alt="夜間網球課程情況"
             loading="lazy"
+            class="carousel-photo"
+          />
+
+          <img
+            src="images/chiayi-tennis-lesson-4.jpg"
+            alt="網球課程照片"
+            loading="lazy"
+            class="carousel-photo"
           />
         </div>
       </section>
 
-      <section id="location">
-        <h2>上課地點</h2>
-        <p>
-          📍
-          目前以上課預約地點為主，主要服務嘉義民雄與中正大學周邊。若學員位於嘉義市、嘉義縣其他地區，也可以私訊討論合適的上課地點與時段。
-        </p>
-      </section>
+      <section id="signup" class="info-section">
+        <h2>預約與上課資訊</h2>
 
-      <section id="signup">
-        <h2>報名方式</h2>
-        <p>
-          目前採取 Instagram 或 Facebook
-          粉絲專頁私訊報名。私訊時可以先提供希望上課時段、上課人數、是否有網球基礎，以及偏好的上課地點，方便安排合適課程。
-        </p>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>📍 上課地點</h3>
+            <p>
+              目前以上課預約地點為主，主要服務嘉義民雄與中正大學周邊。
+              若學員位於嘉義市、嘉義縣其他地區，也可以私訊討論合適的上課地點與時段。
+            </p>
+          </div>
 
-        <p>期待與你在球場見面！</p>
-      </section>
+          <div class="info-card">
+            <h3>📝 報名方式</h3>
+            <p>
+              目前採取 Instagram 或 Facebook 粉絲專頁私訊報名。
+              私訊時可以先提供希望上課時段、上課人數、是否有網球基礎，以及偏好的上課地點，方便安排合適課程。
+            </p>
+          </div>
 
-      <section id="contact">
-        <h2>聯絡 JOIN 嘉義網球</h2>
-        <p>📩 歡迎透過 Instagram 或 Facebook 私訊詢問課程與報名資訊。</p>
+          <div class="info-card">
+            <h3>📩 聯絡我們</h3>
+            <p>
+              歡迎透過 Instagram 或 Facebook 私訊詢問課程、預約時段與報名資訊。
+            </p>
 
-        <div class="social-links">
-          <a
-            href="https://www.instagram.com/join_tennis_/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="前往 JOIN 嘉義網球 Instagram"
-          >
-            <i class="fab fa-instagram fa-2x" style="color: #e4405f"></i>
-          </a>
-          <a
-            href="https://www.facebook.com/share/1BJ29SWx82/?mibextid=wwXIfr"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="前往 JOIN 嘉義網球 Facebook"
-          >
-            <i class="fab fa-facebook fa-2x" style="color: #1877f2"></i>
-          </a>
+            <div class="social-links">
+              <a
+                href="https://www.instagram.com/join_tennis_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="前往 JOIN 嘉義網球 Instagram"
+              >
+                <i class="fab fa-instagram fa-2x instagram-icon"></i>
+              </a>
+
+              <a
+                href="https://www.facebook.com/share/1BJ29SWx82/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="前往 JOIN 嘉義網球 Facebook"
+              >
+                <i class="fab fa-facebook fa-2x facebook-icon"></i>
+              </a>
+            </div>
+          </div>
         </div>
-
-        <p>可使用上方圖示連結報名、詢問上課時段，或觀看更多課程相關內容。</p>
       </section>
     </main>
 
-    <footer>&copy; 2026 JOIN 嘉義網球｜教練：高旻紘｜網站設計：高旻紘</footer>
+    <button
+      class="back-to-top"
+      id="backToTop"
+      type="button"
+      aria-label="回到頁面最上方"
+    >
+      <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <footer>&copy; 2026 JOIN 嘉義網球</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const siteNav = document.getElementById("siteNav");
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelectorAll(".nav-links a");
+        const backToTop = document.getElementById("backToTop");
+
+        let ticking = false;
+
+        function updateScrollState() {
+          if (siteNav) {
+            if (window.scrollY > 80) {
+              siteNav.classList.add("scrolled");
+            } else {
+              siteNav.classList.remove("scrolled");
+            }
+          }
+
+          if (backToTop) {
+            if (window.scrollY > 400) {
+              backToTop.classList.add("is-visible");
+            } else {
+              backToTop.classList.remove("is-visible");
+            }
+          }
+
+          ticking = false;
+        }
+
+        updateScrollState();
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!ticking) {
+              window.requestAnimationFrame(updateScrollState);
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+
+        if (navToggle && siteNav) {
+          navToggle.addEventListener("click", function () {
+            const isOpen = siteNav.classList.toggle("is-open");
+            navToggle.setAttribute("aria-expanded", String(isOpen));
+          });
+        }
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function () {
+            if (siteNav) {
+              siteNav.classList.remove("is-open");
+            }
+
+            if (navToggle) {
+              navToggle.setAttribute("aria-expanded", "false");
+            }
+          });
+        });
+
+        if (backToTop) {
+          backToTop.addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+        }
+      });
+    </script>
   </body>
 </html>
