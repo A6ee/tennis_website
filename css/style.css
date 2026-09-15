@@ -5924,3 +5924,3009 @@ footer {
     height: 102px;
   }
 }
+
+/* =========================
+   教練頁 v6：翻轉卡片版
+   正面：照片 hover 顯示精選經歷
+   背面：白底完整經歷，可捲動
+========================= */
+
+.coach-flip-section .coach-light-grid {
+  max-width: 1040px;
+  align-items: stretch;
+}
+
+.coach-flip-card,
+.coach-flip-card * {
+  box-sizing: border-box;
+}
+
+.coach-flip-card {
+  min-height: 650px;
+  perspective: 1200px;
+}
+
+.coach-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 650px;
+  transform-style: preserve-3d;
+  transition: transform 0.58s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.coach-flip-card.is-flipped .coach-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.coach-flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(30, 47, 79, 0.12);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.coach-flip-front .coach-light-photo {
+  height: 430px;
+}
+
+.coach-flip-front .coach-light-hover {
+  justify-content: flex-end;
+}
+
+.coach-flip-front .coach-light-hover-title {
+  margin-bottom: 14px;
+}
+
+.coach-flip-front .coach-light-hover li {
+  margin-bottom: 8px;
+  line-height: 1.48;
+}
+
+.coach-flip-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 220px;
+  padding: 24px 26px 26px;
+}
+
+.coach-flip-info h3 {
+  margin-bottom: 18px;
+}
+
+.coach-flip-open,
+.coach-flip-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid rgba(30, 47, 79, 0.16);
+  border-radius: 999px;
+  background: #f5f7fb;
+  color: var(--color-primary);
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 900;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.coach-flip-open {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.coach-flip-open:hover,
+.coach-flip-open:focus-visible,
+.coach-flip-close:hover,
+.coach-flip-close:focus-visible {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 12px 26px rgba(30, 47, 79, 0.16);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.coach-flip-back {
+  transform: rotateY(180deg);
+  padding: 26px 26px 24px;
+}
+
+.coach-flip-back-head {
+  flex: 0 0 auto;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(30, 47, 79, 0.12);
+}
+
+.coach-flip-back-head h3 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(1.32rem, 2.4vw, 1.7rem);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.coach-flip-back-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 18px -8px 20px 0;
+  padding-right: 8px;
+  overflow-y: auto;
+}
+
+.coach-flip-back-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.coach-flip-back-scroll::-webkit-scrollbar-track {
+  background: rgba(30, 47, 79, 0.06);
+  border-radius: 999px;
+}
+
+.coach-flip-back-scroll::-webkit-scrollbar-thumb {
+  background: rgba(30, 47, 79, 0.24);
+  border-radius: 999px;
+}
+
+.coach-flip-full-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: coach-flip-full;
+}
+
+.coach-flip-full-list li {
+  counter-increment: coach-flip-full;
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 11px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 720;
+  line-height: 1.56;
+}
+
+.coach-flip-full-list li::before {
+  content: counter(coach-flip-full, decimal-leading-zero);
+  color: var(--color-accent);
+  font-family: "Oswald", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.78;
+  letter-spacing: 0.04em;
+}
+
+.coach-flip-close {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* 桌機：hover 照片顯示精選經歷 */
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  .coach-flip-card:hover .coach-light-photo img,
+  .coach-flip-card:focus-within .coach-light-photo img {
+    transform: scale(1.045);
+    filter: brightness(0.74);
+  }
+
+  .coach-flip-card:hover .coach-light-hover,
+  .coach-flip-card:focus-within .coach-light-hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .coach-flip-card.is-flipped:hover .coach-light-photo img,
+  .coach-flip-card.is-flipped:focus-within .coach-light-photo img {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* 手機與觸控裝置：沒有 hover，精選經歷直接顯示在照片下方 */
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  .coach-flip-section .coach-light-grid {
+    grid-template-columns: 1fr;
+    max-width: 430px;
+    gap: 30px;
+  }
+
+  .coach-flip-card {
+    min-height: 850px;
+  }
+
+  .coach-flip-inner {
+    min-height: 850px;
+  }
+
+  .coach-flip-front .coach-light-photo {
+    height: auto !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #ffffff;
+  }
+
+  .coach-flip-front .coach-light-photo > img {
+    display: block !important;
+    width: 100% !important;
+    height: 350px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  .coach-flip-front .coach-light-hover {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 3 !important;
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    padding: 22px 20px 24px !important;
+    background: var(--color-primary) !important;
+  }
+
+  .coach-flip-card:hover .coach-light-photo img,
+  .coach-flip-card:focus-within .coach-light-photo img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .coach-flip-info {
+    min-height: auto;
+    padding: 22px 20px 24px;
+  }
+
+  .coach-flip-open,
+  .coach-flip-close {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .coach-flip-back {
+    padding: 22px 20px 22px;
+  }
+
+  .coach-flip-back-scroll {
+    margin-top: 16px;
+    margin-bottom: 18px;
+  }
+
+  .coach-flip-full-list li {
+    grid-template-columns: 31px minmax(0, 1fr);
+    font-size: 0.87rem;
+    line-height: 1.56;
+  }
+}
+
+@media (max-width: 430px) {
+  .coach-flip-card {
+    min-height: 820px;
+  }
+
+  .coach-flip-inner {
+    min-height: 820px;
+  }
+
+  .coach-flip-front .coach-light-photo > img {
+    height: 310px !important;
+  }
+
+  .coach-flip-front .coach-light-hover li {
+    font-size: 0.83rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .coach-flip-full-list li {
+    grid-template-columns: 29px minmax(0, 1fr);
+    font-size: 0.83rem;
+  }
+
+  .coach-flip-back {
+    padding: 20px 16px 20px;
+  }
+}
+
+/* =========================
+   教練頁 v7：手機版修正
+   桌機保留 3D 翻轉；手機改成穩定的正反面切換，避免 3D flip 造成排版高度錯亂
+========================= */
+
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  .coach-flip-section {
+    overflow: visible !important;
+  }
+
+  .coach-flip-section .coach-light-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 430px !important;
+    gap: 30px !important;
+    align-items: start !important;
+  }
+
+  .coach-flip-card {
+    min-height: 0 !important;
+    height: auto !important;
+    perspective: none !important;
+  }
+
+  .coach-flip-inner {
+    position: relative !important;
+    min-height: 0 !important;
+    height: auto !important;
+    transform: none !important;
+    transform-style: flat !important;
+    transition: none !important;
+  }
+
+  .coach-flip-card.is-flipped .coach-flip-inner {
+    transform: none !important;
+  }
+
+  .coach-flip-face {
+    position: relative !important;
+    inset: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transform: none !important;
+  }
+
+  .coach-flip-front {
+    display: flex !important;
+  }
+
+  .coach-flip-back {
+    display: none !important;
+  }
+
+  .coach-flip-card.is-flipped .coach-flip-front {
+    display: none !important;
+  }
+
+  .coach-flip-card.is-flipped .coach-flip-back {
+    display: flex !important;
+  }
+
+  .coach-flip-front .coach-light-photo {
+    height: auto !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #ffffff !important;
+  }
+
+  .coach-flip-front .coach-light-photo > img {
+    display: block !important;
+    width: 100% !important;
+    height: 320px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  .coach-flip-front .coach-light-hover {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 3 !important;
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    padding: 22px 20px 24px !important;
+    background: var(--color-primary) !important;
+  }
+
+  .coach-flip-front .coach-light-hover ul {
+    display: block !important;
+  }
+
+  .coach-flip-front .coach-light-hover li {
+    display: list-item !important;
+    margin-bottom: 8px !important;
+    font-size: 0.84rem !important;
+    line-height: 1.48 !important;
+  }
+
+  .coach-flip-card:hover .coach-light-photo img,
+  .coach-flip-card:focus-within .coach-light-photo img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .coach-flip-info {
+    min-height: 0 !important;
+    padding: 22px 20px 24px !important;
+  }
+
+  .coach-flip-info h3 {
+    margin-bottom: 16px !important;
+    font-size: clamp(1.28rem, 7vw, 1.6rem) !important;
+  }
+
+  .coach-flip-open,
+  .coach-flip-close {
+    width: 100% !important;
+    align-self: stretch !important;
+  }
+
+  .coach-flip-back {
+    padding: 22px 20px 24px !important;
+  }
+
+  .coach-flip-back-head {
+    padding-bottom: 14px !important;
+  }
+
+  .coach-flip-back-head h3 {
+    font-size: clamp(1.26rem, 6.4vw, 1.55rem) !important;
+    line-height: 1.28 !important;
+  }
+
+  .coach-flip-back-scroll {
+    flex: 0 1 auto !important;
+    max-height: 520px !important;
+    min-height: 0 !important;
+    margin: 16px -6px 18px 0 !important;
+    padding-right: 6px !important;
+    overflow-y: auto !important;
+  }
+
+  .coach-flip-full-list li {
+    grid-template-columns: 30px minmax(0, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 10px !important;
+    font-size: 0.84rem !important;
+    line-height: 1.52 !important;
+  }
+
+  .coach-flip-full-list li::before {
+    font-size: 0.78rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .coach-flip-front .coach-light-photo > img {
+    height: 290px !important;
+  }
+
+  .coach-flip-front .coach-light-hover {
+    padding: 20px 16px 22px !important;
+  }
+
+  .coach-flip-info,
+  .coach-flip-back {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .coach-flip-back-scroll {
+    max-height: 500px !important;
+  }
+
+  .coach-flip-full-list li {
+    grid-template-columns: 28px minmax(0, 1fr) !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* =========================
+   教練頁 v8：手機版精選經歷移到姓名下方白底區
+   桌機維持照片 hover 精選經歷 + 翻轉背面完整經歷
+   手機正面改成：照片 → 姓名 → 白底精選經歷 → 查看更多
+========================= */
+
+.coach-mobile-preview {
+  display: none;
+}
+
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  .coach-flip-card {
+    min-height: 0 !important;
+    height: auto !important;
+    perspective: none !important;
+  }
+
+  .coach-flip-inner {
+    min-height: 0 !important;
+    height: auto !important;
+    transform: none !important;
+    transform-style: flat !important;
+  }
+
+  .coach-flip-card.is-flipped .coach-flip-inner {
+    transform: none !important;
+  }
+
+  .coach-flip-face {
+    position: relative !important;
+    inset: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transform: none !important;
+  }
+
+  .coach-flip-front {
+    display: flex !important;
+  }
+
+  .coach-flip-back {
+    display: none !important;
+  }
+
+  .coach-flip-card.is-flipped .coach-flip-front {
+    display: none !important;
+  }
+
+  .coach-flip-card.is-flipped .coach-flip-back {
+    display: flex !important;
+  }
+
+  .coach-flip-front .coach-light-photo {
+    height: 320px !important;
+    overflow: hidden !important;
+    display: block !important;
+    background: #e5eaf1 !important;
+  }
+
+  .coach-flip-front .coach-light-photo > img {
+    height: 100% !important;
+  }
+
+  .coach-flip-front .coach-light-hover {
+    display: none !important;
+  }
+
+  .coach-flip-info {
+    min-height: 0 !important;
+    padding: 24px 20px 24px !important;
+    background: #ffffff !important;
+  }
+
+  .coach-flip-info h3 {
+    margin-bottom: 18px !important;
+  }
+
+  .coach-mobile-preview {
+    display: block !important;
+    margin: 2px 0 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(30, 47, 79, 0.1);
+  }
+
+  .coach-mobile-preview-title {
+    margin: 0 0 12px !important;
+    color: var(--color-accent) !important;
+    font-family: "Oswald", sans-serif;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em;
+    line-height: 1.2 !important;
+    text-transform: uppercase;
+  }
+
+  .coach-mobile-preview ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .coach-mobile-preview li {
+    position: relative;
+    margin-bottom: 9px;
+    padding-left: 18px;
+    color: var(--color-text);
+    font-size: 0.88rem;
+    font-weight: 760;
+    line-height: 1.56;
+  }
+
+  .coach-mobile-preview li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-accent);
+    font-weight: 900;
+  }
+
+  .coach-flip-open {
+    margin-top: 0 !important;
+  }
+
+  .coach-flip-back {
+    padding: 22px 20px 24px !important;
+    background: #ffffff !important;
+  }
+
+  .coach-flip-back-scroll {
+    max-height: 560px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .coach-flip-front .coach-light-photo {
+    height: 290px !important;
+  }
+
+  .coach-mobile-preview li {
+    font-size: 0.84rem;
+    line-height: 1.52;
+  }
+}
+
+.coach-flip-card,
+.coach-flip-inner,
+.coach-flip-face,
+.coach-flip-front,
+.coach-flip-back,
+.coach-light-photo {
+  border-radius: 0px !important;
+}
+
+/* =========================
+   教練頁 v9：高教練完整經歷分類版
+   只調整背面完整經歷的呈現；正面精選經歷與翻轉互動不變
+========================= */
+
+.coach-experience-groups {
+  display: grid;
+  gap: 18px;
+}
+
+.coach-experience-group {
+  max-width: none;
+  margin: 0;
+  padding: 0 0 16px;
+  border-bottom: 1px solid rgba(30, 47, 79, 0.1);
+}
+
+.coach-experience-group:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.coach-experience-group h4 {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  background: rgba(200, 155, 90, 0.12);
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+}
+
+.coach-experience-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coach-experience-list li {
+  position: relative;
+  margin-bottom: 8px;
+  padding-left: 18px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 720;
+  line-height: 1.56;
+}
+
+.coach-experience-list li:last-child {
+  margin-bottom: 0;
+}
+
+.coach-experience-list li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  .coach-experience-groups {
+    gap: 16px;
+  }
+
+  .coach-experience-group {
+    padding-bottom: 14px;
+  }
+
+  .coach-experience-group h4 {
+    font-size: 0.86rem;
+  }
+
+  .coach-experience-list li {
+    font-size: 0.84rem;
+    line-height: 1.52;
+  }
+}
+
+/* =========================
+   教練頁 v10：右側完整經歷改為 - 清單＋高教練滾動修正
+   1. 張育鵬完整經歷改為與高教練一致的 - 條列
+   2. 高教練背面內容較長，桌機翻面後提高面板高度，減少內層滾動造成的卡頓/裁切
+   3. 手機仍維持穩定正反面切換
+========================= */
+
+.coach-experience-list-plain {
+  margin-top: 0;
+}
+
+.coach-flip-back-scroll {
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+/* 桌機：高教練完整經歷較長，翻面後只讓第一張卡片加高，避免滾動區塊被按鈕擠壓 */
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  .coach-flip-card-kao.is-flipped,
+  .coach-flip-card-kao.is-flipped .coach-flip-inner {
+    min-height: 760px;
+  }
+
+  .coach-flip-card-kao.is-flipped .coach-flip-face {
+    min-height: 760px;
+  }
+
+  .coach-flip-card-kao.is-flipped .coach-flip-back-scroll {
+    overflow-y: visible;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .coach-flip-card-kao.is-flipped .coach-experience-groups {
+    gap: 14px;
+  }
+
+  .coach-flip-card-kao.is-flipped .coach-experience-group {
+    padding-bottom: 12px;
+  }
+
+  .coach-flip-card-kao.is-flipped .coach-experience-group h4 {
+    margin-bottom: 8px;
+  }
+
+  .coach-flip-card-kao.is-flipped .coach-experience-list li {
+    margin-bottom: 6px;
+    font-size: 0.86rem;
+    line-height: 1.46;
+  }
+
+  .coach-flip-card-zhang .coach-experience-list li {
+    margin-bottom: 11px;
+    font-size: 0.9rem;
+    line-height: 1.56;
+  }
+}
+
+/* 手機：兩位教練背面都用穩定直向白底排版，避免內層捲動和外層頁面互相干擾 */
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  .coach-flip-back-scroll {
+    max-height: none !important;
+    overflow-y: visible !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .coach-experience-list li,
+  .coach-experience-list-plain li {
+    margin-bottom: 9px !important;
+    font-size: 0.84rem !important;
+    line-height: 1.52 !important;
+  }
+}
+
+/* =========================
+   首頁互動動畫 v1
+   目的：
+   1. Hero 背景微幅慢速 zoom
+   2. Hero 文字載入淡入
+   3. About / Brand / Core / Awards 區塊滑入
+   4. 教學核心與得獎卡片增加細緻 hover
+   5. 尊重 prefers-reduced-motion
+========================= */
+
+/* Hero 背景微幅縮放：用偽元素，不動原本背景設定 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("../images/chiayi-tennis-banner.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1);
+  animation: join-hero-slow-zoom 13s ease-out forwards;
+  will-change: transform;
+}
+
+.hero-overlay {
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-content > * {
+  animation: join-hero-fade-up 0.78s ease forwards;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.hero-content > *:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.hero-content > *:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.hero-content > *:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+.hero-content > *:nth-child(4) {
+  animation-delay: 0.38s;
+}
+
+.hero-content > *:nth-child(5) {
+  animation-delay: 0.48s;
+}
+
+@keyframes join-hero-slow-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes join-hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* JS 啟用後才套用初始隱藏，避免 JS 失敗時內容消失 */
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.72s ease,
+    transform 0.72s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-ready .reveal.reveal-left {
+  transform: translateX(-28px);
+}
+
+.reveal-ready .reveal.reveal-right {
+  transform: translateX(28px);
+}
+
+.reveal-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Brand 內層元素稍微錯開出現 */
+.reveal-ready .brand-concept-panel .reveal-stagger {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.58s ease,
+    transform 0.58s ease;
+}
+
+.reveal-ready .brand-concept-panel.is-visible .reveal-stagger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-ready .brand-concept-panel.is-visible .reveal-stagger:nth-child(1) {
+  transition-delay: 0.08s;
+}
+
+.reveal-ready .brand-concept-panel.is-visible .reveal-stagger:nth-child(2) {
+  transition-delay: 0.16s;
+}
+
+.reveal-ready .brand-concept-panel.is-visible .reveal-stagger:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+.reveal-ready .brand-concept-panel.is-visible .reveal-stagger:nth-child(4) {
+  transition-delay: 0.32s;
+}
+
+/* Hero 按鈕微互動 */
+.hero-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.26) 44%,
+    transparent 78%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.48s ease;
+  pointer-events: none;
+}
+
+.hero-btn:hover::after,
+.hero-btn:focus::after {
+  transform: translateX(120%);
+}
+
+/* About 小卡 hover */
+.about-join-point {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.about-join-point:hover,
+.about-join-point:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(200, 155, 90, 0.42);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+/* 教學核心 hover */
+.core-item {
+  transition:
+    transform 0.24s ease,
+    filter 0.24s ease;
+}
+
+.core-item-icon {
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease,
+    background-color 0.24s ease;
+}
+
+.core-item-icon i,
+.core-item-number {
+  transition:
+    color 0.24s ease,
+    transform 0.24s ease;
+}
+
+.core-item:hover,
+.core-item:focus-within {
+  transform: translateY(-3px);
+}
+
+.core-item:hover .core-item-icon,
+.core-item:focus-within .core-item-icon {
+  border-color: rgba(200, 155, 90, 0.72);
+  background-color: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+}
+
+.core-item:hover .core-item-number,
+.core-item:focus-within .core-item-number {
+  color: var(--color-accent);
+}
+
+.core-item:hover .core-item-icon i,
+.core-item:focus-within .core-item-icon i {
+  transform: scale(1.06);
+}
+
+/* 得獎紀錄手機提示 */
+.awards-scroll-hint {
+  display: none;
+  margin: 8px 0 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .awards-scroll-hint {
+    display: block;
+  }
+}
+
+/* 使用者偏好減少動畫時，關閉主要動態效果 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal-ready .reveal,
+  .reveal-ready .brand-concept-panel .reveal-stagger,
+  .hero-content > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* =========================
+   首頁 About 區塊左右滑入視窗 v2
+   About 文字由左滑入，圖片由右滑入，三個重點卡依序出現
+========================= */
+
+.about-split-reveal {
+  overflow: hidden;
+}
+
+.reveal-ready .about-reveal-copy {
+  transform: translateX(-72px);
+  opacity: 0;
+}
+
+.reveal-ready .about-reveal-visual {
+  transform: translateX(72px);
+  opacity: 0;
+}
+
+.reveal-ready .about-reveal-copy.is-visible,
+.reveal-ready .about-reveal-visual.is-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.about-reveal-copy,
+.about-reveal-visual {
+  transition:
+    opacity 0.86s ease,
+    transform 0.86s cubic-bezier(0.16, 0.82, 0.28, 1);
+}
+
+.about-reveal-visual {
+  transition-delay: 0.12s;
+}
+
+.reveal-ready .about-point-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.52s ease,
+    transform 0.52s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-point-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-point-reveal:nth-child(1) {
+  transition-delay: 0.22s;
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-point-reveal:nth-child(2) {
+  transition-delay: 0.32s;
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-point-reveal:nth-child(3) {
+  transition-delay: 0.42s;
+}
+
+.about-join-image img {
+  transition:
+    transform 0.7s ease,
+    filter 0.28s ease;
+}
+
+.about-join-image:hover img,
+.about-join-image:focus-within img {
+  transform: scale(1.035);
+}
+
+/* 手機版改小位移，避免左右滑入造成橫向溢出感 */
+@media (max-width: 700px) {
+  .reveal-ready .about-reveal-copy {
+    transform: translateX(-28px);
+  }
+
+  .reveal-ready .about-reveal-visual {
+    transform: translateX(28px);
+  }
+
+  .about-reveal-copy,
+  .about-reveal-visual {
+    transition-duration: 0.68s;
+  }
+
+  .about-reveal-visual {
+    transition-delay: 0.04s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .about-reveal-copy,
+  .reveal-ready .about-reveal-visual,
+  .reveal-ready .about-point-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* =========================
+   首頁 About 左右滑入 + Brand 標語特效
+========================= */
+
+/* About 區塊左右滑入 */
+.about-split-reveal {
+  overflow: hidden;
+}
+
+.reveal-ready .about-reveal-copy {
+  opacity: 0;
+  transform: translateX(-80px);
+}
+
+.reveal-ready .about-reveal-visual {
+  opacity: 0;
+  transform: translateX(80px);
+}
+
+.about-reveal-copy,
+.about-reveal-visual {
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 0.82, 0.28, 1);
+  will-change: opacity, transform;
+}
+
+.about-reveal-visual {
+  transition-delay: 0.14s;
+}
+
+.reveal-ready .about-reveal-copy.is-visible,
+.reveal-ready .about-reveal-visual.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* About 三個小卡依序出現 */
+.reveal-ready .about-join-point {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-join-point {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-join-point:nth-child(1) {
+  transition-delay: 0.22s;
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-join-point:nth-child(2) {
+  transition-delay: 0.32s;
+}
+
+.reveal-ready .about-reveal-copy.is-visible .about-join-point:nth-child(3) {
+  transition-delay: 0.42s;
+}
+
+/* About 圖片 hover 微放大 */
+.about-join-image img {
+  transition:
+    transform 0.7s ease,
+    filter 0.28s ease;
+}
+
+.about-join-image:hover img,
+.about-join-image:focus-within img {
+  transform: scale(1.035);
+}
+
+/* Brand 右側標語特效：整塊先滑入 */
+.reveal-ready .brand-concept-panel .brand-concept-slogan {
+  opacity: 0;
+  transform: translateX(54px) skewX(-7deg);
+  transition:
+    opacity 0.78s ease,
+    transform 0.78s cubic-bezier(0.16, 0.82, 0.28, 1),
+    box-shadow 0.24s ease;
+}
+
+.reveal-ready .brand-concept-panel.is-visible .brand-concept-slogan {
+  opacity: 1;
+  transform: translateX(0) skewX(-7deg);
+  transition-delay: 0.34s;
+}
+
+/* Brand 標語三行文字依序滑入 */
+.reveal-ready .brand-concept-panel .brand-concept-slogan p {
+  opacity: 0;
+  transform: translateX(28px) skewX(7deg);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.reveal-ready .brand-concept-panel.is-visible .brand-concept-slogan p {
+  opacity: 1;
+  transform: translateX(0) skewX(7deg);
+}
+
+.reveal-ready
+  .brand-concept-panel.is-visible
+  .brand-concept-slogan
+  p:nth-child(1) {
+  transition-delay: 0.48s;
+}
+
+.reveal-ready
+  .brand-concept-panel.is-visible
+  .brand-concept-slogan
+  p:nth-child(2) {
+  transition-delay: 0.6s;
+}
+
+.reveal-ready
+  .brand-concept-panel.is-visible
+  .brand-concept-slogan
+  p:nth-child(3) {
+  transition-delay: 0.72s;
+}
+
+/* Brand 標語 hover：稍微上浮＋亮面掃過 */
+.brand-concept-slogan {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    background-color 0.24s ease;
+}
+
+.brand-concept-slogan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 45%,
+    transparent 78%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.62s ease;
+  pointer-events: none;
+}
+
+.brand-concept-slogan:hover,
+.brand-concept-slogan:focus-within {
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.28);
+}
+
+.brand-concept-slogan:hover::after,
+.brand-concept-slogan:focus-within::after {
+  transform: translateX(120%);
+}
+
+/* 手機版：位移縮小，避免橫向跑版 */
+@media (max-width: 700px) {
+  .reveal-ready .about-reveal-copy {
+    transform: translateX(-30px);
+  }
+
+  .reveal-ready .about-reveal-visual {
+    transform: translateX(30px);
+  }
+
+  .about-reveal-copy,
+  .about-reveal-visual {
+    transition-duration: 0.68s;
+  }
+
+  .about-reveal-visual {
+    transition-delay: 0.04s;
+  }
+
+  .reveal-ready .brand-concept-panel .brand-concept-slogan {
+    transform: translateY(24px) skewX(0);
+  }
+
+  .reveal-ready .brand-concept-panel.is-visible .brand-concept-slogan {
+    transform: translateY(0) skewX(0);
+  }
+
+  .reveal-ready .brand-concept-panel .brand-concept-slogan p,
+  .reveal-ready .brand-concept-panel.is-visible .brand-concept-slogan p {
+    transform: translateX(0) skewX(0);
+  }
+}
+
+/* 減少動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .about-reveal-copy,
+  .reveal-ready .about-reveal-visual,
+  .reveal-ready .about-join-point,
+  .reveal-ready .brand-concept-panel .brand-concept-slogan,
+  .reveal-ready .brand-concept-panel .brand-concept-slogan p {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* =========================
+   About 區塊修正：保留左右滑入，但小卡固定顯示
+========================= */
+
+/* About 區塊左右滑入 */
+.about-split-reveal {
+  overflow: hidden;
+}
+
+.reveal-ready .about-reveal-copy {
+  opacity: 0;
+  transform: translateX(-80px);
+}
+
+.reveal-ready .about-reveal-visual {
+  opacity: 0;
+  transform: translateX(80px);
+}
+
+.about-reveal-copy,
+.about-reveal-visual {
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 0.82, 0.28, 1);
+  will-change: opacity, transform;
+}
+
+.about-reveal-visual {
+  transition-delay: 0.14s;
+}
+
+.reveal-ready .about-reveal-copy.is-visible,
+.reveal-ready .about-reveal-visual.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 關鍵修正：三個小卡不要再被動畫 CSS 隱藏 */
+.about-join-point {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* 三個小卡保留 hover 效果 */
+.about-join-point {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.about-join-point:hover,
+.about-join-point:focus-within {
+  transform: translateY(-3px) !important;
+  border-color: rgba(200, 155, 90, 0.42);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+/* About 圖片 hover 微放大 */
+.about-join-image img {
+  transition:
+    transform 0.7s ease,
+    filter 0.28s ease;
+}
+
+.about-join-image:hover img,
+.about-join-image:focus-within img {
+  transform: scale(1.035);
+}
+
+/* 手機版：位移縮小，避免橫向跑版 */
+@media (max-width: 700px) {
+  .reveal-ready .about-reveal-copy {
+    transform: translateX(-30px);
+  }
+
+  .reveal-ready .about-reveal-visual {
+    transform: translateX(30px);
+  }
+
+  .about-reveal-copy,
+  .about-reveal-visual {
+    transition-duration: 0.68s;
+  }
+
+  .about-reveal-visual {
+    transition-delay: 0.04s;
+  }
+}
+
+/* 減少動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .about-reveal-copy,
+  .reveal-ready .about-reveal-visual,
+  .about-join-point {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* =========================
+   About 區塊：左右滑入＋小卡依序淡入
+   只作用在首頁 about 區塊，不影響其他區塊
+========================= */
+
+.about-split-reveal {
+  overflow: hidden;
+}
+
+/* 初始狀態：左邊文字在左側，右邊圖片在右側 */
+.about-split-reveal .about-reveal-copy {
+  opacity: 0;
+  transform: translateX(-80px);
+}
+
+.about-split-reveal .about-reveal-visual {
+  opacity: 0;
+  transform: translateX(80px);
+}
+
+/* 進場動畫設定 */
+.about-split-reveal .about-reveal-copy,
+.about-split-reveal .about-reveal-visual {
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s cubic-bezier(0.16, 0.82, 0.28, 1);
+  will-change: opacity, transform;
+}
+
+/* 右邊圖片稍微晚一點進場 */
+.about-split-reveal .about-reveal-visual {
+  transition-delay: 0.12s;
+}
+
+/* JS 加上 is-visible 後進場 */
+.about-split-reveal .about-reveal-copy.is-visible,
+.about-split-reveal .about-reveal-visual.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 三個小卡初始狀態 */
+.about-split-reveal .about-join-point {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+/* 左邊文字區出現後，小卡依序出現 */
+.about-split-reveal .about-reveal-copy.is-visible .about-join-point {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point:nth-child(1) {
+  transition-delay: 0.22s;
+}
+
+.about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point:nth-child(2) {
+  transition-delay: 0.34s;
+}
+
+.about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point:nth-child(3) {
+  transition-delay: 0.46s;
+}
+
+/* 小卡 hover 效果 */
+.about-split-reveal .about-join-point:hover,
+.about-split-reveal .about-join-point:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(200, 155, 90, 0.42);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+/* 右側圖片 hover 微放大 */
+.about-split-reveal .about-join-image img {
+  transition:
+    transform 0.7s ease,
+    filter 0.28s ease;
+}
+
+.about-split-reveal .about-join-image:hover img,
+.about-split-reveal .about-join-image:focus-within img {
+  transform: scale(1.035);
+}
+
+/* 手機版：左右滑入距離縮小，避免橫向跑版 */
+@media (max-width: 700px) {
+  .about-split-reveal .about-reveal-copy {
+    transform: translateX(-28px);
+  }
+
+  .about-split-reveal .about-reveal-visual {
+    transform: translateX(28px);
+  }
+
+  .about-split-reveal .about-reveal-copy,
+  .about-split-reveal .about-reveal-visual {
+    transition-duration: 0.68s;
+  }
+
+  .about-split-reveal .about-reveal-visual {
+    transition-delay: 0.06s;
+  }
+}
+
+/* 減少動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .about-split-reveal .about-reveal-copy,
+  .about-split-reveal .about-reveal-visual,
+  .about-split-reveal .about-join-point {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   首頁 About + Brand 動畫修正版 v2
+   修正重點：
+   1. 不再讓舊版 reveal-ready CSS 把 About 區塊永久隱藏
+   2. 只有新版 JS 加上 about-animation-ready 時，才啟用 About 初始隱藏與滑入
+   3. JS 若未載入或觀察失敗，About 仍會正常顯示
+========================= */
+
+/* 先解除舊版 reveal-ready / motion-ready 對 About 的隱藏，避免區塊消失 */
+html.reveal-ready .about-split-reveal .about-reveal-copy,
+html.reveal-ready .about-split-reveal .about-reveal-visual,
+html.reveal-ready .about-split-reveal .about-join-point,
+html.motion-ready .about-split-reveal .about-reveal-copy,
+html.motion-ready .about-split-reveal .about-reveal-visual,
+html.motion-ready .about-split-reveal .about-join-point {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* About：預設一定可見。動畫只在 about-animation-ready 出現後啟用 */
+.about-split-reveal {
+  overflow: hidden;
+}
+
+.about-split-reveal .about-reveal-copy,
+.about-split-reveal .about-reveal-visual,
+.about-split-reveal .about-join-point {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 新版 JS 啟用後：About 左右滑入初始狀態 */
+html.about-animation-ready
+  .about-split-reveal
+  .about-reveal-copy:not(.is-visible) {
+  opacity: 0 !important;
+  transform: translateX(-82px) !important;
+}
+
+html.about-animation-ready
+  .about-split-reveal
+  .about-reveal-visual:not(.is-visible) {
+  opacity: 0 !important;
+  transform: translateX(82px) !important;
+}
+
+.about-split-reveal .about-reveal-copy,
+.about-split-reveal .about-reveal-visual {
+  transition:
+    opacity 0.88s ease,
+    transform 0.88s cubic-bezier(0.16, 0.82, 0.28, 1);
+  will-change: opacity, transform;
+}
+
+.about-split-reveal .about-reveal-visual {
+  transition-delay: 0.12s;
+}
+
+html.about-animation-ready .about-split-reveal .about-reveal-copy.is-visible,
+html.about-animation-ready .about-split-reveal .about-reveal-visual.is-visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* About 三個小卡：等左邊文字進場後依序淡入 */
+html.about-animation-ready .about-split-reveal .about-join-point {
+  opacity: 0 !important;
+  transform: translateY(18px) !important;
+  transition:
+    opacity 0.52s ease,
+    transform 0.52s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+html.about-animation-ready
+  .about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+html.about-animation-ready
+  .about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point:nth-child(1) {
+  transition-delay: 0.24s;
+}
+
+html.about-animation-ready
+  .about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point:nth-child(2) {
+  transition-delay: 0.36s;
+}
+
+html.about-animation-ready
+  .about-split-reveal
+  .about-reveal-copy.is-visible
+  .about-join-point:nth-child(3) {
+  transition-delay: 0.48s;
+}
+
+/* About 小卡 hover */
+.about-split-reveal .about-join-point:hover,
+.about-split-reveal .about-join-point:focus-within {
+  transform: translateY(-3px) !important;
+  border-color: rgba(200, 155, 90, 0.42);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+/* About 圖片 hover */
+.about-split-reveal .about-join-image img {
+  transition:
+    transform 0.7s ease,
+    filter 0.28s ease;
+}
+
+.about-split-reveal .about-join-image:hover img,
+.about-split-reveal .about-join-image:focus-within img {
+  transform: scale(1.035);
+}
+
+/* 其他首頁區塊 reveal：維持淡入滑入，但不影響 About */
+html.motion-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.72s ease,
+    transform 0.72s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.motion-ready .reveal.reveal-up {
+  transform: translateY(28px);
+}
+
+html.motion-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Brand 右側標語特效 */
+.brand-concept-slogan {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+html.motion-ready .brand-concept-panel .brand-concept-slogan {
+  opacity: 0 !important;
+  transform: translateX(58px) skewX(-7deg) !important;
+  transition:
+    opacity 0.78s ease,
+    transform 0.78s cubic-bezier(0.16, 0.82, 0.28, 1),
+    box-shadow 0.3s ease;
+}
+
+html.motion-ready .brand-concept-panel.is-visible .brand-concept-slogan {
+  opacity: 1 !important;
+  transform: translateX(0) skewX(-7deg) !important;
+  transition-delay: 0.34s;
+}
+
+html.motion-ready .brand-concept-panel .brand-concept-slogan p {
+  opacity: 0 !important;
+  transform: translateX(30px) skewX(7deg) !important;
+  transition:
+    opacity 0.54s ease,
+    transform 0.54s ease;
+}
+
+html.motion-ready .brand-concept-panel.is-visible .brand-concept-slogan p {
+  opacity: 1 !important;
+  transform: translateX(0) skewX(7deg) !important;
+}
+
+html.motion-ready
+  .brand-concept-panel.is-visible
+  .brand-concept-slogan
+  p:nth-child(1) {
+  transition-delay: 0.5s;
+}
+
+html.motion-ready
+  .brand-concept-panel.is-visible
+  .brand-concept-slogan
+  p:nth-child(2) {
+  transition-delay: 0.62s;
+}
+
+html.motion-ready
+  .brand-concept-panel.is-visible
+  .brand-concept-slogan
+  p:nth-child(3) {
+  transition-delay: 0.74s;
+}
+
+.brand-concept-slogan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 45%,
+    transparent 78%
+  );
+  transform: translateX(-125%);
+  transition: transform 0.62s ease;
+  pointer-events: none;
+}
+
+.brand-concept-slogan:hover,
+.brand-concept-slogan:focus-within {
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.28);
+}
+
+.brand-concept-slogan:hover::after,
+.brand-concept-slogan:focus-within::after {
+  transform: translateX(125%);
+}
+
+/* 手機版：位移縮小，避免橫向跑版 */
+@media (max-width: 700px) {
+  html.about-animation-ready
+    .about-split-reveal
+    .about-reveal-copy:not(.is-visible) {
+    transform: translateX(-30px) !important;
+  }
+
+  html.about-animation-ready
+    .about-split-reveal
+    .about-reveal-visual:not(.is-visible) {
+    transform: translateX(30px) !important;
+  }
+
+  .about-split-reveal .about-reveal-copy,
+  .about-split-reveal .about-reveal-visual {
+    transition-duration: 0.68s;
+  }
+
+  .about-split-reveal .about-reveal-visual {
+    transition-delay: 0.06s;
+  }
+
+  html.motion-ready .brand-concept-panel .brand-concept-slogan,
+  html.motion-ready .brand-concept-panel.is-visible .brand-concept-slogan {
+    transform: translateY(24px) skewX(0) !important;
+  }
+
+  html.motion-ready .brand-concept-panel.is-visible .brand-concept-slogan {
+    transform: translateY(0) skewX(0) !important;
+  }
+
+  html.motion-ready .brand-concept-panel .brand-concept-slogan p,
+  html.motion-ready .brand-concept-panel.is-visible .brand-concept-slogan p {
+    transform: translateX(0) skewX(0) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready .reveal,
+  html.about-animation-ready .about-split-reveal .about-reveal-copy,
+  html.about-animation-ready .about-split-reveal .about-reveal-visual,
+  html.about-animation-ready .about-split-reveal .about-join-point,
+  html.motion-ready .brand-concept-panel .brand-concept-slogan,
+  html.motion-ready .brand-concept-panel .brand-concept-slogan p {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   課程頁：左右交錯滑入動畫 v3
+   1. 第一張卡片進頁後延遲觸發，確保看得到動畫
+   2. 其餘卡片維持滾動觸發
+   3. 動畫速度放慢、層次更柔和
+========================= */
+
+.course-slide-card .program-flow-image,
+.course-slide-card .program-flow-panel {
+  will-change: opacity, transform;
+}
+
+html.course-animation-ready
+  .course-slide-card:not(.is-visible)
+  .program-flow-image,
+html.course-animation-ready
+  .course-slide-card:not(.is-visible)
+  .program-flow-panel {
+  opacity: 0;
+}
+
+html.course-animation-ready
+  .course-slide-card:nth-child(odd):not(.is-visible)
+  .program-flow-image {
+  transform: translateX(-96px);
+}
+
+html.course-animation-ready
+  .course-slide-card:nth-child(odd):not(.is-visible)
+  .program-flow-panel {
+  transform: translateX(96px) translateY(14px);
+}
+
+html.course-animation-ready
+  .course-slide-card:nth-child(even):not(.is-visible)
+  .program-flow-image {
+  transform: translateX(96px);
+}
+
+html.course-animation-ready
+  .course-slide-card:nth-child(even):not(.is-visible)
+  .program-flow-panel {
+  transform: translateX(-96px) translateY(14px);
+}
+
+.course-slide-card .program-flow-image {
+  transition:
+    opacity 1.15s ease,
+    transform 1.15s cubic-bezier(0.16, 0.82, 0.28, 1),
+    filter 0.28s ease;
+}
+
+.course-slide-card .program-flow-panel {
+  transition:
+    opacity 1.22s ease,
+    transform 1.22s cubic-bezier(0.16, 0.82, 0.28, 1),
+    box-shadow 0.24s ease;
+  transition-delay: 0.18s;
+}
+
+@media (min-width: 981px) {
+  html.course-animation-ready
+    .course-slide-card.is-visible
+    .program-flow-image {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  html.course-animation-ready
+    .course-slide-card.is-visible
+    .program-flow-panel {
+    opacity: 1;
+    transform: translateX(0) translateY(14px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .course-slide-card .program-flow-panel:hover,
+  .course-slide-card .program-flow-panel:focus-within {
+    box-shadow: 0 24px 52px rgba(15, 23, 42, 0.22);
+  }
+
+  .course-slide-card .program-flow-image:hover {
+    filter: saturate(1.05) contrast(1.03);
+  }
+}
+
+@media (max-width: 980px) {
+  html.course-animation-ready
+    .course-slide-card:not(.is-visible)
+    .program-flow-image,
+  html.course-animation-ready
+    .course-slide-card:not(.is-visible)
+    .program-flow-panel {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  html.course-animation-ready .course-slide-card.is-visible .program-flow-image,
+  html.course-animation-ready
+    .course-slide-card.is-visible
+    .program-flow-panel {
+    opacity: 1;
+    transform: none;
+  }
+
+  .course-slide-card .program-flow-image {
+    transition-duration: 0.9s;
+  }
+
+  .course-slide-card .program-flow-panel {
+    transition-duration: 0.98s;
+    transition-delay: 0.12s;
+  }
+}
+
+@media (max-width: 700px) {
+  html.course-animation-ready
+    .course-slide-card:not(.is-visible)
+    .program-flow-image,
+  html.course-animation-ready
+    .course-slide-card:not(.is-visible)
+    .program-flow-panel {
+    transform: translateY(18px);
+  }
+
+  .course-slide-card .program-flow-image {
+    transition-duration: 0.78s;
+  }
+
+  .course-slide-card .program-flow-panel {
+    transition-duration: 0.84s;
+    transition-delay: 0.1s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.course-animation-ready .course-slide-card .program-flow-image,
+  html.course-animation-ready .course-slide-card .program-flow-panel {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   課程頁底部 CTA
+========================= */
+
+.course-cta {
+  padding: 10px 20px 88px;
+}
+
+.course-cta-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e2f4f 0%, #16253f 48%, #0f172a 100%);
+  color: #ffffff;
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
+}
+
+.course-cta-inner::before {
+  content: "JOIN";
+  position: absolute;
+  top: -14px;
+  right: 26px;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(4.8rem, 12vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.course-cta-copy {
+  position: relative;
+  z-index: 1;
+  padding: 44px 46px;
+}
+
+.course-cta h2 {
+  margin: 0 0 14px;
+  color: #ffffff;
+}
+
+.course-cta-lead {
+  max-width: 860px;
+  margin: 0;
+  color: rgba(248, 250, 252, 0.92);
+  font-size: 1rem;
+}
+
+.course-cta-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.course-cta-point {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 18px 18px 16px;
+  backdrop-filter: blur(4px);
+}
+
+.course-cta-point span {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #e9c47f;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.96rem;
+  letter-spacing: 0.12em;
+}
+
+.course-cta-point p {
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.7;
+}
+
+.course-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.course-cta .hero-btn {
+  min-width: 176px;
+  justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .course-cta {
+    padding: 4px 18px 72px;
+  }
+
+  .course-cta-copy {
+    padding: 36px 28px;
+  }
+
+  .course-cta-points {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .course-cta {
+    padding: 0 14px 58px;
+  }
+
+  .course-cta-copy {
+    padding: 28px 20px;
+  }
+
+  .course-cta-inner::before {
+    top: -6px;
+    right: 12px;
+    font-size: 4.2rem;
+  }
+
+  .course-cta h2 {
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  .course-cta-lead {
+    font-size: 0.97rem;
+  }
+
+  .course-cta-actions {
+    flex-direction: column;
+  }
+
+  .course-cta .hero-btn {
+    width: 100%;
+  }
+}
+/* =========================
+   課程頁底部選課 CTA 微調
+   讓課程頁的 CTA 不完全依賴 FAQ 樣式
+========================= */
+
+.course-choice-section {
+  max-width: 1180px;
+  padding: 0 28px 82px;
+}
+
+.course-choice-cta {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .course-choice-section {
+    padding: 0 16px 58px;
+  }
+}
+/* =========================
+   全站動畫速度放慢＋觸發更沉穩
+   放在 style.css 最底部覆蓋前面設定
+========================= */
+
+/* 首頁一般 reveal 動畫放慢 */
+.reveal,
+.motion-ready .reveal,
+.reveal-ready .reveal {
+  transition-duration: 1.15s !important;
+}
+
+/* About 左右滑入放慢 */
+.about-reveal-copy,
+.about-reveal-visual,
+.about-split-reveal .about-reveal-copy,
+.about-split-reveal .about-reveal-visual {
+  transition-duration: 1.25s !important;
+}
+
+/* About 三個小卡淡入放慢 */
+.about-join-point,
+.about-point-reveal,
+.about-split-reveal .about-join-point {
+  transition-duration: 0.8s !important;
+}
+
+/* Brand 標語滑入放慢 */
+.brand-concept-slogan,
+.brand-concept-slogan p {
+  transition-duration: 1.15s !important;
+}
+
+/* 教學核心 hover 不要太快 */
+.core-item,
+.core-item-icon,
+.core-item-icon i,
+.core-item-number {
+  transition-duration: 0.38s !important;
+}
+
+/* 得獎卡片 hover 不要太快 */
+.award-card,
+.award-card-featured,
+.award-image img {
+  transition-duration: 0.38s !important;
+}
+
+/* 課程頁照片滑入放慢 */
+.course-slide-card .program-flow-image {
+  transition:
+    opacity 1.45s ease,
+    transform 1.45s cubic-bezier(0.16, 0.82, 0.28, 1),
+    filter 0.38s ease !important;
+}
+
+/* 課程頁文字卡滑入放慢，並比照片晚一點 */
+.course-slide-card .program-flow-panel {
+  transition:
+    opacity 1.55s ease,
+    transform 1.55s cubic-bezier(0.16, 0.82, 0.28, 1),
+    box-shadow 0.38s ease !important;
+  transition-delay: 0.28s !important;
+}
+
+/* 手機版稍微快一點，避免滑動畫面卡太久 */
+@media (max-width: 700px) {
+  .course-slide-card .program-flow-image {
+    transition-duration: 1s !important;
+  }
+
+  .course-slide-card .program-flow-panel {
+    transition-duration: 1.08s !important;
+    transition-delay: 0.16s !important;
+  }
+
+  .reveal,
+  .motion-ready .reveal,
+  .reveal-ready .reveal {
+    transition-duration: 0.95s !important;
+  }
+}
+/* =========================
+   課程頁第一張卡片初始狀態修正
+   避免第一張卡先合併、再分開、再合併
+========================= */
+
+html.course-first-preload
+  .course-slide-card:first-child:not(.is-visible)
+  .program-flow-image {
+  opacity: 0;
+  transform: translateX(-96px);
+}
+
+html.course-first-preload
+  .course-slide-card:first-child:not(.is-visible)
+  .program-flow-panel {
+  opacity: 0;
+  transform: translateX(96px) translateY(14px);
+}
+
+@media (max-width: 980px) {
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-image,
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-panel {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+@media (max-width: 700px) {
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-image,
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-panel {
+    transform: translateY(18px);
+  }
+}
+
+/* =========================
+   分頁標題背景英文字：統一靠右對齊
+   適用：課程介紹 / 教練團隊 / FAQ / 課程照片 / 預約資訊
+   說明：放在 style.css 最底部，覆蓋前面不同頁面的背景英文字位置設定
+========================= */
+
+.subpage-title-block::before {
+  left: auto !important;
+  right: max(28px, calc((100% - 1080px) / 2)) !important;
+  top: 50px !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  text-align: right !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+
+/* 手機版：也統一靠右 */
+@media (max-width: 760px) {
+  .subpage-title-block::before {
+    left: auto !important;
+    right: 18px !important;
+    top: 58px !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    text-align: right !important;
+    transform: none !important;
+    white-space: nowrap !important;
+    font-size: clamp(3.4rem, 15vw, 4.8rem) !important;
+  }
+}
+/* =========================
+   手機版首頁精修：
+   1. About 三點改成緊湊列
+   2. Brand 白框邊界修正
+   3. Core 背景英文避免卡到
+========================= */
+
+@media (max-width: 700px) {
+  /* About 區塊：縮短高度 */
+  .about-join-section {
+    padding: 38px 16px 46px !important;
+  }
+
+  .about-join-inner {
+    gap: 26px !important;
+  }
+
+  .about-join-copy h2 {
+    font-size: 1.72rem !important;
+    margin-bottom: 18px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .about-join-lead {
+    margin-bottom: 12px !important;
+    font-size: 1rem !important;
+  }
+
+  .about-join-copy p:not(.about-join-eyebrow):not(.about-join-lead) {
+    font-size: 0.96rem !important;
+    line-height: 1.72 !important;
+  }
+
+  .about-join-points {
+    margin-top: 20px !important;
+    gap: 8px !important;
+  }
+
+  .about-join-point {
+    min-height: 0 !important;
+    padding: 12px 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .about-join-point span {
+    flex: 0 0 42px !important;
+    margin: 0 !important;
+    font-size: 1.35rem !important;
+    line-height: 1 !important;
+  }
+
+  .about-join-point p {
+    margin: 0 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Brand 區塊：修正白框跟外邊界太貼的問題 */
+  .brand-concept-section {
+    padding: 16px 12px 42px !important;
+  }
+
+  .brand-concept-panel {
+    min-height: auto !important;
+    padding: 18px 14px !important;
+  }
+
+  .brand-concept-frame {
+    width: 100% !important;
+    padding: 28px 18px 26px !important;
+    gap: 18px !important;
+    border-width: 2px !important;
+  }
+
+  .brand-concept-eyebrow {
+    font-size: 2.45rem !important;
+  }
+
+  .brand-concept-frame h2 {
+    margin-bottom: 16px !important;
+    font-size: 1.48rem !important;
+  }
+
+  .brand-concept-text {
+    margin-bottom: 18px !important;
+    font-size: 0.94rem !important;
+    line-height: 1.68 !important;
+  }
+
+  .brand-concept-slogan {
+    width: 100% !important;
+    padding: 18px 16px !important;
+  }
+
+  .brand-concept-slogan p {
+    margin-bottom: 8px !important;
+    font-size: 1.2rem !important;
+    line-height: 1.42 !important;
+  }
+
+  /* Core 區塊：手機版先隱藏大背景英文字，避免被截斷或卡到內容 */
+  .teaching-core-section::before {
+    display: none !important;
+  }
+
+  .teaching-core-section {
+    padding: 34px 18px 60px !important;
+  }
+
+  .teaching-core-heading {
+    margin-bottom: 22px !important;
+  }
+
+  .teaching-core-list {
+    gap: 20px !important;
+  }
+
+  .core-item {
+    grid-template-columns: 66px minmax(0, 1fr) !important;
+    gap: 16px !important;
+    align-items: start !important;
+  }
+
+  .core-item-icon {
+    width: 62px !important;
+    height: 62px !important;
+  }
+
+  .core-item-icon i {
+    font-size: 1.34rem !important;
+  }
+
+  .core-item-number {
+    top: -10px !important;
+    font-size: 1.22rem !important;
+  }
+
+  .core-item-content h3 {
+    font-size: 1.35rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .core-item-content p {
+    font-size: 0.97rem !important;
+    line-height: 1.68 !important;
+  }
+}
+
+/* =========================
+   手機版首頁精修與課程頁第一張卡片修正 v4
+   1. 手機版 About 三點改成緊湊列
+   2. 手機版 Brand 白框與外側邊界修正
+   3. 手機版 Core 背景英文字避免被裁切
+   4. 桌機課程頁第一張卡片維持分開狀態後再合併進場
+========================= */
+
+/* 桌機課程頁：第一張卡片一開始就保持分開，避免先合併、再分開、再合併 */
+@media (min-width: 981px) {
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-image {
+    opacity: 0 !important;
+    transform: translateX(-96px) !important;
+  }
+
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-panel {
+    opacity: 0 !important;
+    transform: translateX(96px) translateY(14px) !important;
+  }
+}
+
+/* 手機與平板：不要讓 course-first-preload 影響第一張課程卡，避免和其他卡片不同步 */
+@media (max-width: 980px) {
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-image,
+  html.course-first-preload
+    .course-slide-card:first-child:not(.is-visible)
+    .program-flow-panel {
+    opacity: inherit;
+  }
+}
+
+@media (max-width: 700px) {
+  /* About：三個重點卡改成緊湊橫列式資訊，降低手機版佔用高度 */
+  .about-join-section {
+    padding: 36px 16px 42px !important;
+  }
+
+  .about-join-inner {
+    gap: 24px !important;
+  }
+
+  .about-join-copy h2 {
+    margin-bottom: 16px !important;
+    padding-bottom: 14px !important;
+    font-size: clamp(1.65rem, 7vw, 1.95rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .about-join-lead {
+    margin-bottom: 12px !important;
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .about-join-copy p:not(.about-join-eyebrow):not(.about-join-lead) {
+    font-size: 0.96rem !important;
+    line-height: 1.68 !important;
+  }
+
+  .about-join-points {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin-top: 18px !important;
+  }
+
+  .about-join-point {
+    min-height: 0 !important;
+    padding: 11px 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .about-join-point span {
+    flex: 0 0 42px !important;
+    margin: 0 !important;
+    font-size: 1.35rem !important;
+    line-height: 1 !important;
+  }
+
+  .about-join-point p,
+  .about-join-point p:not(.about-join-eyebrow):not(.about-join-lead) {
+    margin: 0 !important;
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Brand：讓深色背景、白框、文字內容在手機版有穩定內距，不貼邊、不被裁切 */
+  .brand-concept-section {
+    padding: 18px 18px 44px !important;
+  }
+
+  .brand-concept-panel {
+    min-height: auto !important;
+    padding: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .brand-concept-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    padding: 30px 20px 28px !important;
+    border-width: 2px !important;
+    overflow: hidden !important;
+  }
+
+  .brand-concept-eyebrow {
+    font-size: clamp(2.35rem, 11vw, 3rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  .brand-concept-frame h2 {
+    margin: 4px 0 12px !important;
+    font-size: 1.46rem !important;
+    line-height: 1.28 !important;
+  }
+
+  .brand-concept-text {
+    margin-bottom: 16px !important;
+    font-size: 0.94rem !important;
+    line-height: 1.66 !important;
+  }
+
+  .brand-concept-slogan {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 17px 15px !important;
+    transform: none !important;
+  }
+
+  .brand-concept-slogan p {
+    margin-bottom: 8px !important;
+    font-size: clamp(1.08rem, 5.2vw, 1.28rem) !important;
+    line-height: 1.42 !important;
+    transform: none !important;
+  }
+
+  /* Core：手機版隱藏大背景 CORE 字，避免右側被卡住或裁切 */
+  .teaching-core-section::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .teaching-core-section {
+    padding: 34px 18px 54px !important;
+  }
+
+  .teaching-core-heading {
+    margin-bottom: 20px !important;
+  }
+
+  .teaching-core-list {
+    gap: 18px !important;
+  }
+
+  .core-item {
+    grid-template-columns: 68px minmax(0, 1fr) !important;
+    gap: 15px !important;
+    align-items: start !important;
+  }
+
+  .core-item-icon {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .core-item-icon i {
+    font-size: 1.36rem !important;
+  }
+
+  .core-item-number {
+    top: -10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 1.24rem !important;
+  }
+
+  .core-item-content h3 {
+    margin-bottom: 5px !important;
+    font-size: 1.25rem !important;
+    line-height: 1.28 !important;
+  }
+
+  .core-item-content p {
+    font-size: 0.96rem !important;
+    line-height: 1.64 !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-concept-section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .brand-concept-panel {
+    padding: 12px !important;
+  }
+
+  .brand-concept-frame {
+    padding: 28px 18px 26px !important;
+  }
+
+  .about-join-point {
+    padding: 10px 12px !important;
+  }
+
+  .about-join-point span {
+    flex-basis: 38px !important;
+    font-size: 1.26rem !important;
+  }
+
+  .about-join-point p,
+  .about-join-point p:not(.about-join-eyebrow):not(.about-join-lead) {
+    font-size: 0.96rem !important;
+  }
+}
+/* =========================
+   首頁 Core 背景英文字桌機修正
+   避免 CORE 太靠右被瀏覽器邊界或固定按鈕擋住
+========================= */
+
+@media (min-width: 701px) {
+  .teaching-core-section::before {
+    content: "CORE" !important;
+    display: block !important;
+    right: max(42px, calc((100% - 1120px) / 2 + 80px)) !important;
+    top: 42px !important;
+    font-size: clamp(4.8rem, 9vw, 8.6rem) !important;
+    color: rgba(30, 47, 79, 0.045) !important;
+    z-index: 0 !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  .teaching-core-heading,
+  .teaching-core-list {
+    position: relative;
+    z-index: 2;
+  }
+}
+/* =========================
+   首頁 Core 背景英文字移除
+   直接隱藏右側 CORE 大字，避免被邊界或固定按鈕卡住
+========================= */
+
+.teaching-core-section::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* =========================
+   Gallery 三四項精修：跑馬燈放慢＋影片/Reels作品集化 v1
+   1. 課堂照片跑馬燈放慢，不搶主照片視覺
+   2. 影片區改成精選課程影片的作品集感
+   3. IG Reels 明確標示會前往 Instagram
+========================= */
+
+/* 跑馬燈放慢：桌機更沉穩 */
+.gallery-natural-track {
+  animation-duration: 56s !important;
+}
+
+/* 影片 / Reels 區標題補充文字 */
+.gallery-section-lead {
+  max-width: 720px;
+  margin: 14px 0 0;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.76;
+}
+
+.gallery-natural-video-head,
+.gallery-natural-reels-head {
+  margin-bottom: 28px;
+}
+
+/* 影片卡片微互動：更像精選作品，而不是單純素材排放 */
+.gallery-natural-video-card {
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.gallery-natural-video-card:hover,
+.gallery-natural-video-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(200, 155, 90, 0.32);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.13);
+}
+
+.gallery-natural-video-caption {
+  align-items: flex-start;
+  min-height: 78px;
+}
+
+.gallery-natural-video-caption span {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+/* Reels 外連提示標籤 */
+.gallery-natural-reel-cover {
+  position: relative;
+}
+
+.gallery-natural-reel-link-label {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 3;
+  max-width: calc(100% - 78px);
+  padding: 7px 10px;
+  color: #ffffff;
+  background: rgba(30, 47, 79, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.gallery-natural-reel-card:hover .gallery-natural-reel-link-label,
+.gallery-natural-reel-card:focus .gallery-natural-reel-link-label {
+  background: rgba(200, 155, 90, 0.88);
+  border-color: rgba(200, 155, 90, 0.92);
+}
+
+/* 平板：仍然放慢，但不要太慢 */
+@media (max-width: 980px) {
+  .gallery-natural-track {
+    animation-duration: 50s !important;
+  }
+
+  .gallery-section-lead {
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+}
+
+/* 手機：橫向滑動區不要太拖；跑馬燈比原本慢一些即可 */
+@media (max-width: 760px) {
+  .gallery-natural-track {
+    animation-duration: 44s !important;
+  }
+
+  .gallery-natural-video-head,
+  .gallery-natural-reels-head {
+    margin-bottom: 20px;
+  }
+
+  .gallery-section-lead {
+    margin-top: 10px;
+    font-size: 0.94rem;
+    line-height: 1.68;
+  }
+
+  .gallery-natural-video-caption {
+    min-height: 74px;
+    padding: 15px 16px 17px;
+  }
+
+  .gallery-natural-video-caption h3 {
+    font-size: 1.02rem;
+  }
+
+  .gallery-natural-reel-link-label {
+    left: 12px;
+    bottom: 12px;
+    max-width: calc(100% - 70px);
+    padding: 6px 9px;
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================
+   Gallery 影片標題對齊＋手機影片封面修正 v2
+   1. 影片卡片下方數字與標題改用 grid，避免 01 / 02 / 03 與文字基線不齊
+   2. 手機版 video 使用 poster 圖，避免載入時只看到純色底
+========================= */
+
+/* 影片標題：數字與文字第一行對齊 */
+.gallery-natural-video-caption {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: baseline !important;
+  column-gap: 12px !important;
+  row-gap: 0 !important;
+  min-height: 78px !important;
+}
+
+.gallery-natural-video-caption span {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.35 !important;
+}
+
+.gallery-natural-video-caption h3 {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.35 !important;
+}
+
+/* 讓影片封面圖在不同瀏覽器都維持填滿 */
+.gallery-natural-video-frame video {
+  object-fit: cover !important;
+  background-color: #0f172a;
+}
+
+/* 手機版：避免影片還沒載入 metadata 時只剩一塊純色底 */
+@media (max-width: 760px) {
+  .gallery-natural-video-frame {
+    background-color: #0f172a;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .gallery-natural-video-card:nth-child(1) .gallery-natural-video-frame {
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.2)),
+      url("../images/gallery-class-main.jpg");
+  }
+
+  .gallery-natural-video-card:nth-child(2) .gallery-natural-video-frame {
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.2)),
+      url("../images/gallery-class-side-1.jpg");
+  }
+
+  .gallery-natural-video-card:nth-child(3) .gallery-natural-video-frame {
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.2)),
+      url("../images/gallery-class-side-2.jpg");
+  }
+
+  .gallery-natural-video-caption {
+    min-height: 72px !important;
+    column-gap: 10px !important;
+    padding: 15px 16px 17px !important;
+  }
+
+  .gallery-natural-video-caption span {
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .gallery-natural-video-caption h3 {
+    font-size: 1.02rem !important;
+    line-height: 1.38 !important;
+  }
+}
+/* =========================
+   Gallery 手機影片封面自訂版
+   封面圖請放在 images/
+   video-poster-01.jpg / video-poster-02.jpg / video-poster-03.jpg
+========================= */
+
+.gallery-natural-video-frame video {
+  object-fit: cover !important;
+  background-color: #0f172a;
+}
+
+@media (max-width: 760px) {
+  .gallery-natural-video-frame {
+    background-color: #0f172a;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .gallery-natural-video-card:nth-child(1) .gallery-natural-video-frame {
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.2)),
+      url("../images/video-poster-01.jpg");
+  }
+
+  .gallery-natural-video-card:nth-child(2) .gallery-natural-video-frame {
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.2)),
+      url("../images/video-poster-02.jpg");
+  }
+
+  .gallery-natural-video-card:nth-child(3) .gallery-natural-video-frame {
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.2)),
+      url("../images/video-poster-03.jpg");
+  }
+}
