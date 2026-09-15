@@ -4,6 +4,28 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".nav-links a");
   const backToTop = document.getElementById("backToTop");
 
+  /* =========================
+     分頁切換後回到頁面頂端
+     只在點擊站內導覽連結後啟用，避免影響一般上一頁/下一頁操作
+  ========================= */
+  if (sessionStorage.getItem("joinPageNavToTop") === "1") {
+    sessionStorage.removeItem("joinPageNavToTop");
+
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo(0, 0);
+
+    window.requestAnimationFrame(function () {
+      window.scrollTo(0, 0);
+    });
+
+    window.setTimeout(function () {
+      window.scrollTo(0, 0);
+    }, 100);
+  }
+
   let ticking = false;
 
   function updateScrollState() {
@@ -54,6 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (navToggle) {
         navToggle.setAttribute("aria-expanded", "false");
+      }
+
+      const href = link.getAttribute("href");
+
+      if (
+        href &&
+        !href.startsWith("#") &&
+        !href.startsWith("http") &&
+        !href.startsWith("mailto:") &&
+        !href.startsWith("tel:")
+      ) {
+        sessionStorage.setItem("joinPageNavToTop", "1");
       }
     });
   });
